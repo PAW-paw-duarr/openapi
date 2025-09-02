@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.1.0"
+    "version": "1.1.1"
   },
   "tags": [
     {
@@ -17,9 +17,6 @@
     },
     {
       "name": "user"
-    },
-    {
-      "name": "profile"
     },
     {
       "name": "admin"
@@ -78,97 +75,6 @@
         "deprecated": false,
         "description": "Register title for next year",
         "operationId": "post-api-title",
-        "tags": [
-          "title"
-        ],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "photo_file": {
-                    "format": "binary",
-                    "type": "string",
-                    "example": ""
-                  },
-                  "proposal_file": {
-                    "format": "binary",
-                    "type": "string",
-                    "example": ""
-                  },
-                  "title": {
-                    "example": "",
-                    "type": "string"
-                  },
-                  "desc": {
-                    "example": "",
-                    "type": "string"
-                  },
-                  "description": {
-                    "example": "",
-                    "type": "string"
-                  }
-                }
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/data-title"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      },
-      "patch": {
-        "summary": "Change Title",
-        "deprecated": false,
-        "description": "change title",
-        "operationId": "patch-api-title",
         "tags": [
           "title"
         ],
@@ -325,6 +231,107 @@
             "headers": {}
           },
           "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "patch": {
+        "summary": "Change Title",
+        "deprecated": false,
+        "description": "change title",
+        "operationId": "patch-api-title",
+        "tags": [
+          "title"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "photo_file": {
+                    "format": "binary",
+                    "type": "string",
+                    "example": ""
+                  },
+                  "proposal_file": {
+                    "format": "binary",
+                    "type": "string",
+                    "example": ""
+                  },
+                  "title": {
+                    "example": "",
+                    "type": "string"
+                  },
+                  "desc": {
+                    "example": "",
+                    "type": "string"
+                  },
+                  "description": {
+                    "example": "",
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/data-title"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
             "description": "",
             "content": {
               "application/json": {
@@ -498,70 +505,6 @@
             "headers": {}
           },
           "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      },
-      "delete": {
-        "summary": "Remove submission",
-        "deprecated": false,
-        "description": "",
-        "operationId": "del-api-admin-submission",
-        "tags": [],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "id"
-                ]
-              },
-              "example": {
-                "id": "123"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "null"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "500": {
             "description": "",
             "content": {
               "application/json": {
@@ -1293,7 +1236,7 @@
         "description": "get all user",
         "operationId": "get-api-admin-users",
         "tags": [
-          "user"
+          "admin"
         ],
         "parameters": [],
         "responses": {
@@ -1347,7 +1290,7 @@
         "description": "get user data by id",
         "operationId": "get-api-admin-user-id",
         "tags": [
-          "profile"
+          "admin"
         ],
         "parameters": [
           {
@@ -1540,12 +1483,7 @@
                     "message": {
                       "type": "string"
                     }
-                  },
-                  "required": [
-                    "status",
-                    "error",
-                    "message"
-                  ]
+                  }
                 }
               }
             },
@@ -1835,7 +1773,7 @@
         "description": "list all available title (previous period && not yet taken)",
         "operationId": "get-api-admin-title",
         "tags": [
-          "title"
+          "admin"
         ],
         "parameters": [],
         "responses": {
@@ -2039,7 +1977,7 @@
           "name": {
             "type": "string"
           },
-          "leader_id": {
+          "leader_email": {
             "type": "string"
           },
           "title_id": {
@@ -2053,15 +1991,11 @@
               "Smart City",
               "Transportasi Ramah Lingkungan"
             ]
+          },
+          "period": {
+            "type": "number"
           }
-        },
-        "required": [
-          "id",
-          "leader_id",
-          "title_id",
-          "category",
-          "name"
-        ]
+        }
       },
       "data-team-short": {
         "type": "object",
@@ -2080,13 +2014,11 @@
               "Smart City",
               "Transportasi Ramah Lingkungan"
             ]
+          },
+          "period": {
+            "type": "number"
           }
-        },
-        "required": [
-          "id",
-          "name",
-          "category"
-        ]
+        }
       },
       "data-user": {
         "type": "object",
@@ -2109,15 +2041,7 @@
           "google_id": {
             "type": "string"
           }
-        },
-        "required": [
-          "id",
-          "cv_url",
-          "team_id",
-          "name",
-          "email",
-          "google_id"
-        ]
+        }
       },
       "data-user-short": {
         "type": "object",
@@ -2128,11 +2052,7 @@
           "name": {
             "type": "string"
           }
-        },
-        "required": [
-          "id",
-          "name"
-        ]
+        }
       },
       "data-submission": {
         "type": "object",
@@ -2149,13 +2069,7 @@
           "team_target_id": {
             "type": "string"
           }
-        },
-        "required": [
-          "id",
-          "team_id",
-          "grand_design_url",
-          "team_target_id"
-        ]
+        }
       },
       "data-submission-short": {
         "type": "object",
@@ -2192,15 +2106,7 @@
           "proposal_url": {
             "type": "string"
           }
-        },
-        "required": [
-          "id",
-          "title",
-          "desc",
-          "description",
-          "photo_url",
-          "proposal_url"
-        ]
+        }
       },
       "data-title-short": {
         "type": "object",
@@ -2217,13 +2123,7 @@
           "photo_url": {
             "type": "string"
           }
-        },
-        "required": [
-          "id",
-          "title",
-          "desc",
-          "photo_url"
-        ]
+        }
       },
       "DefaultErrors": {
         "type": "object",
@@ -2280,12 +2180,7 @@
           "message": {
             "type": "string"
           }
-        },
-        "required": [
-          "status",
-          "error",
-          "message"
-        ]
+        }
       }
     },
     "securitySchemes": {}
