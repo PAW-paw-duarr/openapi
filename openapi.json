@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "kulyah",
+    "title": "PAW",
     "description": "",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "tags": [
     {
@@ -14,6 +14,9 @@
     },
     {
       "name": "team"
+    },
+    {
+      "name": "user"
     },
     {
       "name": "profile"
@@ -41,21 +44,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "title": {
-                        "type": "string"
-                      },
-                      "desc": {
-                        "type": "string"
-                      },
-                      "photo_url": {
-                        "type": "string"
-                      }
-                    }
+                    "$ref": "#/components/schemas/data-title-short"
                   }
                 },
                 "example": [
@@ -1132,14 +1121,14 @@
         "security": []
       }
     },
-    "/api/profile": {
+    "/api/user": {
       "get": {
-        "summary": "Current Profile",
+        "summary": "Current User",
         "deprecated": false,
-        "description": "get current profile data",
-        "operationId": "get-api-profile",
+        "description": "get current userdata",
+        "operationId": "get-api-user",
         "tags": [
-          "profile"
+          "user"
         ],
         "parameters": [],
         "responses": {
@@ -1172,7 +1161,7 @@
                     "name",
                     "email"
                   ],
-                  "$ref": "#/components/schemas/data-profile"
+                  "$ref": "#/components/schemas/data-user"
                 },
                 "example": {
                   "id": "123",
@@ -1200,12 +1189,12 @@
         "security": []
       },
       "patch": {
-        "summary": "Change profile",
+        "summary": "Change user",
         "deprecated": false,
-        "description": "change profile data",
-        "operationId": "patch-api-profile",
+        "description": "change user data",
+        "operationId": "patch-api-user",
         "tags": [
-          "profile"
+          "user"
         ],
         "parameters": [],
         "requestBody": {
@@ -1240,7 +1229,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/data-profile"
+                  "$ref": "#/components/schemas/data-user"
                 }
               }
             },
@@ -1250,14 +1239,14 @@
         "security": []
       }
     },
-    "/api/profile/{id}": {
+    "/api/user/{id}": {
       "get": {
-        "summary": "Detail Profile By Id",
+        "summary": "Detail User By Id",
         "deprecated": false,
-        "description": "get profile data by id",
-        "operationId": "api-profile-id",
+        "description": "get user data by id",
+        "operationId": "api-user-id",
         "tags": [
-          "profile"
+          "user"
         ],
         "parameters": [
           {
@@ -1276,7 +1265,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/data-profile"
+                  "$ref": "#/components/schemas/data-user"
                 }
               }
             },
@@ -1297,14 +1286,14 @@
         "security": []
       }
     },
-    "/api/admin/profiles": {
+    "/api/admin/users": {
       "get": {
-        "summary": "Get all profile",
+        "summary": "Get all user",
         "deprecated": false,
-        "description": "get all profile",
-        "operationId": "get-api-admin-profiles",
+        "description": "get all user",
+        "operationId": "get-api-admin-users",
         "tags": [
-          "admin"
+          "user"
         ],
         "parameters": [],
         "responses": {
@@ -1351,12 +1340,12 @@
         "security": []
       }
     },
-    "/api/admin/profile/{id}": {
+    "/api/admin/user/{id}": {
       "get": {
-        "summary": "Detail Profile By Id",
+        "summary": "Detail User By Id",
         "deprecated": false,
-        "description": "get profile data by id",
-        "operationId": "get-api-admin-profile-id",
+        "description": "get user data by id",
+        "operationId": "get-api-admin-user-id",
         "tags": [
           "profile"
         ],
@@ -1377,13 +1366,81 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/data-profile"
+                  "$ref": "#/components/schemas/data-user"
                 }
               }
             },
             "headers": {}
           },
           "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/admin/user": {
+      "delete": {
+        "summary": "Remove profile",
+        "deprecated": false,
+        "description": "",
+        "operationId": "del-api-admin-user",
+        "tags": [
+          "admin"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              "example": {
+                "id": "123"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
             "description": "",
             "content": {
               "application/json": {
@@ -1607,151 +1664,6 @@
         "security": []
       }
     },
-    "/api/admin/titles": {
-      "get": {
-        "summary": "Get All Title",
-        "deprecated": false,
-        "description": "list all available title (previous period && not yet taken)",
-        "operationId": "get-api-admin-title",
-        "tags": [
-          "title"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "title": {
-                        "type": "string"
-                      },
-                      "desc": {
-                        "type": "string"
-                      },
-                      "photo_url": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                },
-                "example": [
-                  {
-                    "id": "123",
-                    "title": "makan siang bergizi",
-                    "desc": "projek mencari sumber makan siang",
-                    "photo_url": "http://google.com"
-                  }
-                ]
-              }
-            },
-            "headers": {}
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/api/admin/title/{id}": {
-      "get": {
-        "summary": "Detail Title By Id",
-        "deprecated": false,
-        "description": "full data from title id",
-        "operationId": "get-api-admin-title-id",
-        "tags": [
-          "admin"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-                    "desc": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "photo_url": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "title",
-                    "desc",
-                    "description",
-                    "photo_url",
-                    "team_id"
-                  ],
-                  "$ref": "#/components/schemas/data-title"
-                },
-                "example": {
-                  "id": "123",
-                  "title": "makan siang bergizi",
-                  "desc": "projek mencari sumber makan siang",
-                  "description": "projek panjaaang",
-                  "photo_url": "http://google.com",
-                  "team_id": "123221"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
     "/api/admin/batch": {
       "post": {
         "summary": "Generate New Batch",
@@ -1916,49 +1828,40 @@
         "security": []
       }
     },
-    "/api/admin/profile": {
-      "delete": {
-        "summary": "Remove profile",
+    "/api/admin/titles": {
+      "get": {
+        "summary": "Get All Title",
         "deprecated": false,
-        "description": "",
-        "operationId": "del-api-admin-profile",
+        "description": "list all available title (previous period && not yet taken)",
+        "operationId": "get-api-admin-title",
         "tags": [
-          "admin"
+          "title"
         ],
         "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "id"
-                ]
-              },
-              "example": {
-                "id": "123"
-              }
-            }
-          }
-        },
         "responses": {
-          "204": {
+          "200": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "null"
-                }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/data-title-short"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "123",
+                    "title": "makan siang bergizi",
+                    "desc": "projek mencari sumber makan siang",
+                    "photo_url": "http://google.com"
+                  }
+                ]
               }
             },
             "headers": {}
           },
-          "400": {
+          "404": {
             "description": "",
             "content": {
               "application/json": {
@@ -1968,8 +1871,80 @@
               }
             },
             "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/admin/title/{id}": {
+      "get": {
+        "summary": "Detail Title By Id",
+        "deprecated": false,
+        "description": "full data from title id",
+        "operationId": "get-api-admin-title-id",
+        "tags": [
+          "admin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "desc": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "photo_url": {
+                      "type": "string"
+                    },
+                    "team_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "desc",
+                    "description",
+                    "photo_url",
+                    "team_id"
+                  ],
+                  "$ref": "#/components/schemas/data-title"
+                },
+                "example": {
+                  "id": "123",
+                  "title": "makan siang bergizi",
+                  "desc": "projek mencari sumber makan siang",
+                  "description": "projek panjaaang",
+                  "photo_url": "http://google.com",
+                  "team_id": "123221"
+                }
+              }
+            },
+            "headers": {}
           },
-          "500": {
+          "404": {
             "description": "",
             "content": {
               "application/json": {
@@ -2061,24 +2036,31 @@
           "id": {
             "type": "string"
           },
+          "name": {
+            "type": "string"
+          },
           "leader_id": {
             "type": "string"
           },
-          "member": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/data-profile-short"
-            }
-          },
           "title_id": {
             "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Kesehatan",
+              "Pengelolaan Sampah",
+              "Smart City",
+              "Transportasi Ramah Lingkungan"
+            ]
           }
         },
         "required": [
           "id",
           "leader_id",
-          "member",
-          "title_id"
+          "title_id",
+          "category",
+          "name"
         ]
       },
       "data-team-short": {
@@ -2086,13 +2068,27 @@
         "properties": {
           "id": {
             "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Kesehatan",
+              "Pengelolaan Sampah",
+              "Smart City",
+              "Transportasi Ramah Lingkungan"
+            ]
           }
         },
         "required": [
-          "id"
+          "id",
+          "name",
+          "category"
         ]
       },
-      "data-profile": {
+      "data-user": {
         "type": "object",
         "properties": {
           "id": {
@@ -2109,6 +2105,9 @@
           },
           "email": {
             "type": "string"
+          },
+          "google_id": {
+            "type": "string"
           }
         },
         "required": [
@@ -2116,10 +2115,11 @@
           "cv_url",
           "team_id",
           "name",
-          "email"
+          "email",
+          "google_id"
         ]
       },
-      "data-profile-short": {
+      "data-user-short": {
         "type": "object",
         "properties": {
           "id": {
@@ -2200,6 +2200,29 @@
           "description",
           "photo_url",
           "proposal_url"
+        ]
+      },
+      "data-title-short": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "photo_url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "desc",
+          "photo_url"
         ]
       },
       "DefaultErrors": {
