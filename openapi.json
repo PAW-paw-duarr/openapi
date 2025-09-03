@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.1.1"
+    "version": "1.1.2"
   },
   "tags": [
     {
@@ -1155,6 +1155,10 @@
                     "format": "email",
                     "example": ""
                   },
+                  "password": {
+                    "example": "",
+                    "type": "string"
+                  },
                   "cv_file": {
                     "format": "binary",
                     "type": "string",
@@ -1903,6 +1907,74 @@
         "deprecated": false,
         "description": "",
         "operationId": "del-api-admin-submission",
+        "tags": [
+          "admin"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              "example": {
+                "id": "123"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/admin/title": {
+      "delete": {
+        "summary": "Remove Title",
+        "deprecated": false,
+        "description": "",
+        "operationId": "del-api-title-submission",
         "tags": [
           "admin"
         ],
