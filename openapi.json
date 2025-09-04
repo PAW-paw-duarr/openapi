@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.1.6"
+    "version": "1.2.0"
   },
   "tags": [
     {
@@ -20,10 +20,13 @@
     },
     {
       "name": "admin"
+    },
+    {
+      "name": "auth"
     }
   ],
   "paths": {
-    "/api/title": {
+    "/title": {
       "get": {
         "summary": "List Title",
         "deprecated": false,
@@ -56,7 +59,7 @@
             },
             "headers": {}
           },
-          "404": {
+          "401": {
             "description": "",
             "content": {
               "application/json": {
@@ -190,7 +193,7 @@
         "security": []
       }
     },
-    "/api/title/{id}": {
+    "/title/{id}": {
       "get": {
         "summary": "Detail Title By Id",
         "deprecated": false,
@@ -258,7 +261,7 @@
             },
             "headers": {}
           },
-          "404": {
+          "401": {
             "description": "",
             "content": {
               "application/json": {
@@ -387,6 +390,17 @@
             },
             "headers": {}
           },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "500": {
             "description": "",
             "content": {
@@ -402,7 +416,7 @@
         "security": []
       }
     },
-    "/api/title/{id}/take": {
+    "/title/{id}/take": {
       "post": {
         "summary": "Take Title",
         "deprecated": false,
@@ -518,7 +532,7 @@
         "security": []
       }
     },
-    "/api/submission": {
+    "/submission": {
       "get": {
         "summary": "List Submission",
         "deprecated": false,
@@ -560,7 +574,7 @@
             },
             "headers": {}
           },
-          "404": {
+          "401": {
             "description": "",
             "content": {
               "application/json": {
@@ -575,7 +589,7 @@
         "security": []
       }
     },
-    "/api/submission/{id}": {
+    "/submission/{id}": {
       "get": {
         "summary": "Detail Submission",
         "deprecated": false,
@@ -628,6 +642,17 @@
             },
             "headers": {}
           },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "404": {
             "description": "",
             "content": {
@@ -643,7 +668,7 @@
         "security": []
       }
     },
-    "/api/submission/response": {
+    "/submission/response": {
       "post": {
         "summary": "Response Submission",
         "deprecated": false,
@@ -754,7 +779,7 @@
         "security": []
       }
     },
-    "/api/team": {
+    "/team": {
       "get": {
         "summary": "Current Team",
         "deprecated": false,
@@ -838,7 +863,7 @@
             },
             "headers": {}
           },
-          "404": {
+          "401": {
             "description": "",
             "content": {
               "application/json": {
@@ -853,7 +878,7 @@
         "security": []
       }
     },
-    "/api/team/{id}": {
+    "/team/{id}": {
       "get": {
         "summary": "Detail Team By Id",
         "deprecated": false,
@@ -947,6 +972,17 @@
             },
             "headers": {}
           },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "404": {
             "description": "",
             "content": {
@@ -962,7 +998,7 @@
         "security": []
       }
     },
-    "/api/team/kick": {
+    "/team/kick": {
       "post": {
         "summary": "Kick Member",
         "deprecated": false,
@@ -1015,7 +1051,29 @@
             },
             "headers": {}
           },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
             "description": "",
             "content": {
               "application/json": {
@@ -1041,7 +1099,7 @@
         "security": []
       }
     },
-    "/api/team/join": {
+    "/team/join": {
       "post": {
         "summary": "Join Team",
         "deprecated": false,
@@ -1094,7 +1152,29 @@
             },
             "headers": {}
           },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
             "description": "",
             "content": {
               "application/json": {
@@ -1120,7 +1200,7 @@
         "security": []
       }
     },
-    "/api/user": {
+    "/user": {
       "get": {
         "summary": "Current User",
         "deprecated": false,
@@ -1173,7 +1253,7 @@
             },
             "headers": {}
           },
-          "404": {
+          "401": {
             "description": "",
             "content": {
               "application/json": {
@@ -1261,12 +1341,45 @@
               }
             },
             "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
       }
     },
-    "/api/user/{id}": {
+    "/user/{id}": {
       "get": {
         "summary": "Detail User By Id",
         "deprecated": false,
@@ -1322,6 +1435,17 @@
             },
             "headers": {}
           },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "404": {
             "description": "",
             "content": {
@@ -1337,7 +1461,7 @@
         "security": []
       }
     },
-    "/api/admin/users": {
+    "/admin/users": {
       "get": {
         "summary": "Get all user",
         "deprecated": false,
@@ -1376,7 +1500,7 @@
             },
             "headers": {}
           },
-          "404": {
+          "401": {
             "description": "",
             "content": {
               "application/json": {
@@ -1391,7 +1515,7 @@
         "security": []
       }
     },
-    "/api/admin/user/{id}": {
+    "/admin/user/{id}": {
       "get": {
         "summary": "Detail User By Id",
         "deprecated": false,
@@ -1447,6 +1571,17 @@
             },
             "headers": {}
           },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "404": {
             "description": "",
             "content": {
@@ -1462,7 +1597,7 @@
         "security": []
       }
     },
-    "/api/admin/user": {
+    "/admin/user": {
       "delete": {
         "summary": "Remove profile",
         "deprecated": false,
@@ -1515,6 +1650,28 @@
             },
             "headers": {}
           },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "500": {
             "description": "",
             "content": {
@@ -1530,7 +1687,7 @@
         "security": []
       }
     },
-    "/api/admin/teams": {
+    "/admin/teams": {
       "get": {
         "summary": "Get all team",
         "deprecated": false,
@@ -1555,76 +1712,12 @@
             },
             "headers": {}
           },
-          "404": {
+          "401": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "title": "",
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "enum": [
-                        400,
-                        401,
-                        402,
-                        403,
-                        404,
-                        405,
-                        406,
-                        407,
-                        408,
-                        409,
-                        410,
-                        411,
-                        412,
-                        413,
-                        414,
-                        415,
-                        416,
-                        417,
-                        418,
-                        421,
-                        422,
-                        423,
-                        424,
-                        425,
-                        426,
-                        428,
-                        429,
-                        431,
-                        451,
-                        500,
-                        501,
-                        502,
-                        503,
-                        504,
-                        505,
-                        506,
-                        507,
-                        508,
-                        509,
-                        510,
-                        511
-                      ]
-                    },
-                    "error": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "details": {
-                      "type": "object",
-                      "properties": {}
-                    }
-                  },
-                  "required": [
-                    "status",
-                    "error",
-                    "message"
-                  ]
+                  "$ref": "#/components/schemas/DefaultErrors"
                 }
               }
             },
@@ -1634,7 +1727,7 @@
         "security": []
       }
     },
-    "/api/admin/team/{id}": {
+    "/admin/team/{id}": {
       "get": {
         "summary": "Detail Team By Id",
         "deprecated": false,
@@ -1728,6 +1821,17 @@
             },
             "headers": {}
           },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "404": {
             "description": "",
             "content": {
@@ -1743,7 +1847,7 @@
         "security": []
       }
     },
-    "/api/admin/batch": {
+    "/admin/batch": {
       "post": {
         "summary": "Generate New Batch",
         "deprecated": false,
@@ -1839,7 +1943,7 @@
         "security": []
       }
     },
-    "/api/admin/team": {
+    "/admin/team": {
       "delete": {
         "summary": "Remove teams",
         "deprecated": false,
@@ -1892,6 +1996,28 @@
             },
             "headers": {}
           },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "500": {
             "description": "",
             "content": {
@@ -1907,7 +2033,7 @@
         "security": []
       }
     },
-    "/api/admin/titles": {
+    "/admin/titles": {
       "get": {
         "summary": "Get All Title",
         "deprecated": false,
@@ -1940,7 +2066,7 @@
             },
             "headers": {}
           },
-          "404": {
+          "401": {
             "description": "",
             "content": {
               "application/json": {
@@ -1955,7 +2081,7 @@
         "security": []
       }
     },
-    "/api/admin/title/{id}": {
+    "/admin/title/{id}": {
       "get": {
         "summary": "Detail Title By Id",
         "deprecated": false,
@@ -2023,6 +2149,17 @@
             },
             "headers": {}
           },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "404": {
             "description": "",
             "content": {
@@ -2038,7 +2175,7 @@
         "security": []
       }
     },
-    "/api/admin/submission": {
+    "/admin/submission": {
       "delete": {
         "summary": "Remove submission",
         "deprecated": false,
@@ -2091,6 +2228,28 @@
             },
             "headers": {}
           },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "500": {
             "description": "",
             "content": {
@@ -2106,7 +2265,7 @@
         "security": []
       }
     },
-    "/api/admin/title": {
+    "/admin/title": {
       "delete": {
         "summary": "Remove Title",
         "deprecated": false,
@@ -2159,12 +2318,194 @@
             },
             "headers": {}
           },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
           "500": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/signin/password": {
+      "post": {
+        "summary": "Password SignIn",
+        "deprecated": false,
+        "description": "",
+        "operationId": "get-auth-signin-password",
+        "tags": [
+          "auth"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "$ref": "#/components/schemas/signin-password-body"
+              },
+              "example": {
+                "email": "email@mail.com",
+                "password": "aaa"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/signup/password": {
+      "post": {
+        "summary": "Password SignUp",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "example": {
+                "name": "tes1",
+                "email": "tes@mail.com",
+                "password": "Admin123!"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "cv_url": {
+                      "type": "string"
+                    },
+                    "team_id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "cv_url",
+                    "team_id",
+                    "name",
+                    "email"
+                  ],
+                  "$ref": "#/components/schemas/data-user"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/signout": {
+      "get": {
+        "summary": "Logout",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
                 }
               }
             },
@@ -2334,54 +2675,26 @@
           }
         }
       },
+      "signin-password-body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
       "DefaultErrors": {
         "type": "object",
         "properties": {
           "status": {
-            "type": "integer",
-            "enum": [
-              400,
-              401,
-              402,
-              403,
-              404,
-              405,
-              406,
-              407,
-              408,
-              409,
-              410,
-              411,
-              412,
-              413,
-              414,
-              415,
-              416,
-              417,
-              418,
-              421,
-              422,
-              423,
-              424,
-              425,
-              426,
-              428,
-              429,
-              431,
-              451,
-              500,
-              501,
-              502,
-              503,
-              504,
-              505,
-              506,
-              507,
-              508,
-              509,
-              510,
-              511
-            ]
+            "type": "integer"
           },
           "error": {
             "type": "string"
@@ -2391,13 +2704,12 @@
           },
           "details": {
             "type": "object",
-            "properties": {}
+            "properties": {},
+            "additionalProperties": true
           }
         },
         "required": [
-          "status",
-          "error",
-          "message"
+          "status"
         ]
       }
     },
