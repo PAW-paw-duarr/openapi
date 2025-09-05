@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.2.1"
+    "version": "1.2.2"
   },
   "tags": [
     {
@@ -2545,6 +2545,93 @@
   },
   "components": {
     "schemas": {
+      "DefaultErrors": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "signin-password-body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "additionalProperties": false
+      },
+      "data-team-short": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Kesehatan",
+              "Pengelolaan Sampah",
+              "Smart City",
+              "Transportasi Ramah Lingkungan"
+            ]
+          },
+          "period": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "data-user": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "cv_url": {
+            "type": "string"
+          },
+          "team_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "google_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "data-team": {
         "type": "object",
         "properties": {
@@ -2572,64 +2659,8 @@
           "period": {
             "type": "number"
           }
-        }
-      },
-      "data-team-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "category": {
-            "type": "string",
-            "enum": [
-              "Kesehatan",
-              "Pengelolaan Sampah",
-              "Smart City",
-              "Transportasi Ramah Lingkungan"
-            ]
-          },
-          "period": {
-            "type": "number"
-          }
-        }
-      },
-      "data-user": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "cv_url": {
-            "type": "string"
-          },
-          "team_id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "google_id": {
-            "type": "string"
-          }
-        }
-      },
-      "data-user-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
+        },
+        "additionalProperties": false
       },
       "data-submission": {
         "type": "object",
@@ -2646,7 +2677,8 @@
           "team_target_id": {
             "type": "string"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "data-submission-short": {
         "type": "object",
@@ -2660,7 +2692,8 @@
           "team_target_id": {
             "type": "string"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "data-title": {
         "type": "object",
@@ -2683,7 +2716,8 @@
           "proposal_url": {
             "type": "string"
           }
-        }
+        },
+        "additionalProperties": false
       },
       "data-title-short": {
         "type": "object",
@@ -2700,44 +2734,8 @@
           "photo_url": {
             "type": "string"
           }
-        }
-      },
-      "signin-password-body": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          }
         },
-        "required": [
-          "email",
-          "password"
-        ]
-      },
-      "DefaultErrors": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer"
-          },
-          "error": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "details": {
-            "type": "object",
-            "properties": {},
-            "additionalProperties": true
-          }
-        },
-        "required": [
-          "status"
-        ]
+        "additionalProperties": false
       }
     },
     "securitySchemes": {}
