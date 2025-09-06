@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.2.2"
+    "version": "1.2.3"
   },
   "tags": [
     {
@@ -2423,7 +2423,10 @@
         "summary": "Password SignUp",
         "deprecated": false,
         "description": "",
-        "tags": [],
+        "operationId": "post-auth-signup-password",
+        "tags": [
+          "auth"
+        ],
         "parameters": [],
         "requestBody": {
           "content": {
@@ -2496,7 +2499,10 @@
         "summary": "Logout",
         "deprecated": false,
         "description": "",
-        "tags": [],
+        "operationId": "get-auth-signout",
+        "tags": [
+          "auth"
+        ],
         "parameters": [],
         "responses": {
           "200": {
@@ -2545,43 +2551,34 @@
   },
   "components": {
     "schemas": {
-      "DefaultErrors": {
+      "data-team": {
         "type": "object",
         "properties": {
-          "status": {
-            "type": "integer"
-          },
-          "error": {
+          "id": {
             "type": "string"
           },
-          "message": {
+          "name": {
             "type": "string"
           },
-          "details": {
-            "type": "object",
-            "properties": {},
-            "additionalProperties": true
+          "leader_email": {
+            "type": "string"
+          },
+          "title_id": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Kesehatan",
+              "Pengelolaan Sampah",
+              "Smart City",
+              "Transportasi Ramah Lingkungan"
+            ]
+          },
+          "period": {
+            "type": "number"
           }
         },
-        "required": [
-          "status"
-        ],
-        "additionalProperties": false
-      },
-      "signin-password-body": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "email",
-          "password"
-        ],
         "additionalProperties": false
       },
       "data-team-short": {
@@ -2632,7 +2629,7 @@
         },
         "additionalProperties": false
       },
-      "data-team": {
+      "data-user-short": {
         "type": "object",
         "properties": {
           "id": {
@@ -2640,24 +2637,6 @@
           },
           "name": {
             "type": "string"
-          },
-          "leader_email": {
-            "type": "string"
-          },
-          "title_id": {
-            "type": "string"
-          },
-          "category": {
-            "type": "string",
-            "enum": [
-              "Kesehatan",
-              "Pengelolaan Sampah",
-              "Smart City",
-              "Transportasi Ramah Lingkungan"
-            ]
-          },
-          "period": {
-            "type": "number"
           }
         },
         "additionalProperties": false
@@ -2735,6 +2714,45 @@
             "type": "string"
           }
         },
+        "additionalProperties": false
+      },
+      "signin-password-body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "additionalProperties": false
+      },
+      "DefaultErrors": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "status"
+        ],
         "additionalProperties": false
       }
     },
