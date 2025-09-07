@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.2.3"
+    "version": "1.3.0"
   },
   "tags": [
     {
@@ -110,7 +110,14 @@
                     "example": "",
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "photo_file",
+                  "proposal_file",
+                  "title",
+                  "desc",
+                  "description"
+                ]
               },
               "examples": {}
             }
@@ -416,122 +423,6 @@
         "security": []
       }
     },
-    "/title/{id}/take": {
-      "post": {
-        "summary": "Take Title",
-        "deprecated": false,
-        "description": "take the title",
-        "operationId": "post-api-title-id-take",
-        "tags": [
-          "title"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "grand_design": {
-                    "format": "binary",
-                    "type": "string",
-                    "example": ""
-                  }
-                },
-                "required": [
-                  "grand_design"
-                ]
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "grand_design_url": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "grand_design_url"
-                  ]
-                },
-                "example": {
-                  "id": "123",
-                  "grand_design_url": "https://average-skeleton.net/"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
     "/submission": {
       "get": {
         "summary": "List Submission",
@@ -668,6 +559,117 @@
         "security": []
       }
     },
+    "/submission/submit": {
+      "post": {
+        "summary": "Submit Submission",
+        "deprecated": false,
+        "description": "take the title",
+        "operationId": "post-api-submission-submit",
+        "tags": [
+          "submission"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title_id": {
+                    "example": "",
+                    "type": "string"
+                  },
+                  "grand_design": {
+                    "format": "binary",
+                    "type": "string",
+                    "example": ""
+                  }
+                },
+                "required": [
+                  "title_id",
+                  "grand_design"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "grand_design_url": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "grand_design_url"
+                  ]
+                },
+                "example": {
+                  "id": "123",
+                  "grand_design_url": "https://average-skeleton.net/"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
     "/submission/response": {
       "post": {
         "summary": "Response Submission",
@@ -688,7 +690,7 @@
                     "type": "string"
                   },
                   "accept": {
-                    "type": "boolean"
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -883,7 +885,7 @@
         "summary": "Detail Team By Id",
         "deprecated": false,
         "description": "get current team detail",
-        "operationId": "get-api-team",
+        "operationId": "get-api-team-id",
         "tags": [
           "team"
         ],
@@ -998,12 +1000,12 @@
         "security": []
       }
     },
-    "/team/kick": {
+    "/team/join": {
       "post": {
-        "summary": "Kick Member",
+        "summary": "Join Team",
         "deprecated": false,
-        "description": "kick member",
-        "operationId": "post-api-team-kick",
+        "description": "join team with id",
+        "operationId": "post-api-team-join",
         "tags": [
           "team"
         ],
@@ -1014,12 +1016,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
+                  "code": {
                     "type": "string"
                   }
                 },
                 "required": [
-                  "id"
+                  "code"
                 ]
               },
               "example": {
@@ -1034,15 +1036,54 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
                   "properties": {
                     "id": {
                       "type": "string"
+                    },
+                    "photo_url": {
+                      "type": "string"
+                    },
+                    "proposal_url": {
+                      "type": "string"
+                    },
+                    "proposal_title": {
+                      "type": "string"
+                    },
+                    "desc": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "leader_id": {
+                      "type": "string"
+                    },
+                    "member": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      }
                     }
                   },
                   "required": [
-                    "id"
-                  ]
+                    "id",
+                    "photo_url",
+                    "proposal_url",
+                    "proposal_title",
+                    "desc",
+                    "description",
+                    "leader_id",
+                    "member"
+                  ],
+                  "$ref": "#/components/schemas/data-team"
                 },
                 "example": {
                   "id": "123"
@@ -1099,12 +1140,12 @@
         "security": []
       }
     },
-    "/team/join": {
-      "post": {
-        "summary": "Join Team",
+    "/team/kick": {
+      "delete": {
+        "summary": "Kick Member",
         "deprecated": false,
-        "description": "join team with id",
-        "operationId": "post-api-team-join",
+        "description": "kick member",
+        "operationId": "post-api-team-kick",
         "tags": [
           "team"
         ],
@@ -1115,12 +1156,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
+                  "user_id": {
                     "type": "string"
                   }
                 },
                 "required": [
-                  "id"
+                  "user_id"
                 ]
               },
               "example": {
@@ -1130,23 +1171,13 @@
           }
         },
         "responses": {
-          "200": {
+          "204": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id"
-                  ]
-                },
-                "example": {
-                  "id": "123"
+                  "properties": {}
                 }
               }
             },
@@ -2577,6 +2608,9 @@
           },
           "period": {
             "type": "number"
+          },
+          "code": {
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -2655,6 +2689,12 @@
           },
           "team_target_id": {
             "type": "string"
+          },
+          "accepted": {
+            "type": "boolean"
+          },
+          "title_id": {
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -2669,6 +2709,9 @@
             "type": "string"
           },
           "team_target_id": {
+            "type": "string"
+          },
+          "title_id": {
             "type": "string"
           }
         },
