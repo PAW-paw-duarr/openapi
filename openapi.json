@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.3.0"
+    "version": "1.4.0"
   },
   "tags": [
     {
@@ -19,10 +19,10 @@
       "name": "user"
     },
     {
-      "name": "admin"
+      "name": "auth"
     },
     {
-      "name": "auth"
+      "name": "admin"
     }
   ],
   "paths": {
@@ -46,15 +46,7 @@
                   "items": {
                     "$ref": "#/components/schemas/data-title-short"
                   }
-                },
-                "example": [
-                  {
-                    "id": "123",
-                    "title": "makan siang bergizi",
-                    "desc": "projek mencari sumber makan siang",
-                    "photo_url": "http://google.com"
-                  }
-                ]
+                }
               }
             },
             "headers": {}
@@ -255,14 +247,6 @@
                     "team_id"
                   ],
                   "$ref": "#/components/schemas/data-title"
-                },
-                "example": {
-                  "id": "123",
-                  "title": "makan siang bergizi",
-                  "desc": "projek mencari sumber makan siang",
-                  "description": "projek panjaaang",
-                  "photo_url": "http://google.com",
-                  "team_id": "123221"
                 }
               }
             },
@@ -454,13 +438,7 @@
                     },
                     "$ref": "#/components/schemas/data-submission-short"
                   }
-                },
-                "example": [
-                  {
-                    "id": "123",
-                    "team_id": "123"
-                  }
-                ]
+                }
               }
             },
             "headers": {}
@@ -523,11 +501,6 @@
                     "grand_design_url"
                   ],
                   "$ref": "#/components/schemas/data-submission"
-                },
-                "example": {
-                  "id": "123",
-                  "team_id": "1232",
-                  "grand_design_url": "http://google.com"
                 }
               }
             },
@@ -613,10 +586,6 @@
                     "id",
                     "grand_design_url"
                   ]
-                },
-                "example": {
-                  "id": "123",
-                  "grand_design_url": "https://average-skeleton.net/"
                 }
               }
             },
@@ -724,10 +693,6 @@
                     "id",
                     "accept"
                   ]
-                },
-                "example": {
-                  "id": "123",
-                  "accept": false
                 }
               }
             },
@@ -845,21 +810,6 @@
                     "member"
                   ],
                   "$ref": "#/components/schemas/data-team"
-                },
-                "example": {
-                  "id": "123",
-                  "photo_url": "http://google.com",
-                  "proposal_url": "http://google.com",
-                  "proposal_title": "MBG",
-                  "desc": "MBG singkat",
-                  "description": "MBG panjang",
-                  "leader_id": "123",
-                  "member": [
-                    {
-                      "name": "member 1",
-                      "id": "123"
-                    }
-                  ]
                 }
               }
             },
@@ -954,21 +904,6 @@
                     "member"
                   ],
                   "$ref": "#/components/schemas/data-team"
-                },
-                "example": {
-                  "id": "123",
-                  "photo_url": "http://google.com",
-                  "proposal_url": "http://google.com",
-                  "proposal_title": "MBG",
-                  "desc": "MBG singkat",
-                  "description": "MBG panjang",
-                  "leader_id": "123",
-                  "member": [
-                    {
-                      "name": "member 1",
-                      "id": "123"
-                    }
-                  ]
                 }
               }
             },
@@ -1084,9 +1019,6 @@
                     "member"
                   ],
                   "$ref": "#/components/schemas/data-team"
-                },
-                "example": {
-                  "id": "123"
                 }
               }
             },
@@ -1272,13 +1204,6 @@
                     "email"
                   ],
                   "$ref": "#/components/schemas/data-user"
-                },
-                "example": {
-                  "id": "123",
-                  "cv_url": "http://google.com",
-                  "team_id": "123",
-                  "name": "name",
-                  "email": "email@email.com"
                 }
               }
             },
@@ -1492,6 +1417,192 @@
         "security": []
       }
     },
+    "/auth/signin/password": {
+      "post": {
+        "summary": "Password SignIn",
+        "deprecated": false,
+        "description": "",
+        "operationId": "get-auth-signin-password",
+        "tags": [
+          "auth"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "$ref": "#/components/schemas/signin-password-body"
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/signup/password": {
+      "post": {
+        "summary": "Password SignUp",
+        "deprecated": false,
+        "description": "",
+        "operationId": "post-auth-signup-password",
+        "tags": [
+          "auth"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "cv_url": {
+                      "type": "string"
+                    },
+                    "team_id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "cv_url",
+                    "team_id",
+                    "name",
+                    "email"
+                  ],
+                  "$ref": "#/components/schemas/data-user"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/signout": {
+      "get": {
+        "summary": "Logout",
+        "deprecated": false,
+        "description": "",
+        "operationId": "get-auth-signout",
+        "tags": [
+          "auth"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/google": {
+      "get": {
+        "summary": "Google Auth",
+        "deprecated": false,
+        "description": "",
+        "operationId": "get-auth-google",
+        "tags": [
+          "auth"
+        ],
+        "parameters": [],
+        "responses": {
+          "302": {
+            "description": "",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
     "/admin/users": {
       "get": {
         "summary": "Get all user",
@@ -1520,13 +1631,7 @@
                       }
                     }
                   }
-                },
-                "example": [
-                  {
-                    "id": "123",
-                    "name": "123"
-                  }
-                ]
+                }
               }
             },
             "headers": {}
@@ -1652,9 +1757,7 @@
                   "id"
                 ]
               },
-              "example": {
-                "id": "123"
-              }
+              "examples": {}
             }
           }
         },
@@ -1832,21 +1935,6 @@
                     "member"
                   ],
                   "$ref": "#/components/schemas/data-team"
-                },
-                "example": {
-                  "id": "123",
-                  "photo_url": "http://google.com",
-                  "proposal_url": "http://google.com",
-                  "proposal_title": "MBG",
-                  "desc": "MBG singkat",
-                  "description": "MBG panjang",
-                  "leader_id": "123",
-                  "member": [
-                    {
-                      "name": "member 1",
-                      "id": "123"
-                    }
-                  ]
                 }
               }
             },
@@ -1894,17 +1982,15 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "year": {
+                  "period": {
                     "type": "string"
                   }
                 },
                 "required": [
-                  "year"
+                  "period"
                 ]
               },
-              "example": {
-                "year": "2024"
-              }
+              "examples": {}
             }
           }
         },
@@ -1926,13 +2012,7 @@
                       }
                     }
                   }
-                },
-                "example": [
-                  {
-                    "id": "123",
-                    "code": "aaa"
-                  }
-                ]
+                }
               }
             },
             "headers": {}
@@ -1998,9 +2078,7 @@
                   "id"
                 ]
               },
-              "example": {
-                "id": "123"
-              }
+              "examples": {}
             }
           }
         },
@@ -2084,15 +2162,7 @@
                   "items": {
                     "$ref": "#/components/schemas/data-title-short"
                   }
-                },
-                "example": [
-                  {
-                    "id": "123",
-                    "title": "makan siang bergizi",
-                    "desc": "projek mencari sumber makan siang",
-                    "photo_url": "http://google.com"
-                  }
-                ]
+                }
               }
             },
             "headers": {}
@@ -2167,14 +2237,6 @@
                     "team_id"
                   ],
                   "$ref": "#/components/schemas/data-title"
-                },
-                "example": {
-                  "id": "123",
-                  "title": "makan siang bergizi",
-                  "desc": "projek mencari sumber makan siang",
-                  "description": "projek panjaaang",
-                  "photo_url": "http://google.com",
-                  "team_id": "123221"
                 }
               }
             },
@@ -2230,9 +2292,7 @@
                   "id"
                 ]
               },
-              "example": {
-                "id": "123"
-              }
+              "examples": {}
             }
           }
         },
@@ -2320,9 +2380,7 @@
                   "id"
                 ]
               },
-              "example": {
-                "id": "123"
-              }
+              "examples": {}
             }
           }
         },
@@ -2377,199 +2435,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/auth/signin/password": {
-      "post": {
-        "summary": "Password SignIn",
-        "deprecated": false,
-        "description": "",
-        "operationId": "get-auth-signin-password",
-        "tags": [
-          "auth"
-        ],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "email": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "email",
-                  "password"
-                ],
-                "$ref": "#/components/schemas/signin-password-body"
-              },
-              "example": {
-                "email": "email@mail.com",
-                "password": "aaa"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/auth/signup/password": {
-      "post": {
-        "summary": "Password SignUp",
-        "deprecated": false,
-        "description": "",
-        "operationId": "post-auth-signup-password",
-        "tags": [
-          "auth"
-        ],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              },
-              "example": {
-                "name": "tes1",
-                "email": "tes@mail.com",
-                "password": "Admin123!"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "cv_url": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "cv_url",
-                    "team_id",
-                    "name",
-                    "email"
-                  ],
-                  "$ref": "#/components/schemas/data-user"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/auth/signout": {
-      "get": {
-        "summary": "Logout",
-        "deprecated": false,
-        "description": "",
-        "operationId": "get-auth-signout",
-        "tags": [
-          "auth"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/auth/google": {
-      "get": {
-        "summary": "Google Auth",
-        "deprecated": false,
-        "description": "",
-        "operationId": "get-auth-google",
-        "tags": [
-          "auth"
-        ],
-        "parameters": [],
-        "responses": {
-          "302": {
-            "description": "",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
                 }
               }
             },
