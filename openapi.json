@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.4.0"
+    "version": "1.4.1"
   },
   "tags": [
     {
@@ -262,6 +262,17 @@
               }
             },
             "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -484,6 +495,7 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "type": "object",
                   "properties": {
                     "id": {
                       "type": "string"
@@ -578,14 +590,19 @@
                     "id": {
                       "type": "string"
                     },
+                    "team_id": {
+                      "type": "string"
+                    },
                     "grand_design_url": {
                       "type": "string"
                     }
                   },
                   "required": [
                     "id",
+                    "team_id",
                     "grand_design_url"
-                  ]
+                  ],
+                  "$ref": "#/components/schemas/data-submission"
                 }
               }
             },
@@ -685,14 +702,19 @@
                     "id": {
                       "type": "string"
                     },
-                    "accept": {
-                      "type": "boolean"
+                    "team_id": {
+                      "type": "string"
+                    },
+                    "grand_design_url": {
+                      "type": "string"
                     }
                   },
                   "required": [
                     "id",
-                    "accept"
-                  ]
+                    "team_id",
+                    "grand_design_url"
+                  ],
+                  "$ref": "#/components/schemas/data-submission"
                 }
               }
             },
@@ -1455,14 +1477,59 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "cv_url": {
+                      "type": "string"
+                    },
+                    "team_id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "cv_url",
+                    "team_id",
+                    "name",
+                    "email"
+                  ],
+                  "$ref": "#/components/schemas/data-user"
                 }
               }
             },
             "headers": {}
           },
           "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
             "description": "",
             "content": {
               "application/json": {
@@ -1535,6 +1602,17 @@
             "headers": {}
           },
           "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
             "description": "",
             "content": {
               "application/json": {
