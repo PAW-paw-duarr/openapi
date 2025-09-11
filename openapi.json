@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.4.1"
+    "version": "1.5.0"
   },
   "tags": [
     {
@@ -46,7 +46,15 @@
                   "items": {
                     "$ref": "#/components/schemas/data-title-short"
                   }
-                }
+                },
+                "example": [
+                  {
+                    "id": "68bd10af65ab2e935d845a4d",
+                    "title": "title",
+                    "desc": "desc",
+                    "photo_url": "https://storage.hilmo.dev/pawpaw/undefined"
+                  }
+                ]
               }
             },
             "headers": {}
@@ -247,7 +255,15 @@
                     "team_id"
                   ],
                   "$ref": "#/components/schemas/data-title"
-                }
+                },
+                "example": [
+                  {
+                    "id": "68bd10af65ab2e935d845a4d",
+                    "title": "title",
+                    "desc": "desc",
+                    "photo_url": "https://storage.hilmo.dev/pawpaw/undefined"
+                  }
+                ]
               }
             },
             "headers": {}
@@ -1681,136 +1697,6 @@
         "security": []
       }
     },
-    "/admin/users": {
-      "get": {
-        "summary": "Get all user",
-        "deprecated": false,
-        "description": "get all user",
-        "operationId": "get-api-admin-users",
-        "tags": [
-          "admin"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/admin/user/{id}": {
-      "get": {
-        "summary": "Detail User By Id",
-        "deprecated": false,
-        "description": "get user data by id",
-        "operationId": "get-api-admin-user-id",
-        "tags": [
-          "admin"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "cv_url": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "cv_url",
-                    "team_id",
-                    "name",
-                    "email"
-                  ],
-                  "$ref": "#/components/schemas/data-user"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
     "/admin/user": {
       "delete": {
         "summary": "Remove profile",
@@ -1885,151 +1771,6 @@
             "headers": {}
           },
           "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/admin/teams": {
-      "get": {
-        "summary": "Get all team",
-        "deprecated": false,
-        "description": "get all team",
-        "operationId": "get-api-admin-teams",
-        "tags": [
-          "admin"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/data-team-short"
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/admin/team/{id}": {
-      "get": {
-        "summary": "Detail Team By Id",
-        "deprecated": false,
-        "description": "get current team detail",
-        "operationId": "get-api-admin-team-id",
-        "tags": [
-          "admin"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "photo_url": {
-                      "type": "string"
-                    },
-                    "proposal_url": {
-                      "type": "string"
-                    },
-                    "proposal_title": {
-                      "type": "string"
-                    },
-                    "desc": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "leader_id": {
-                      "type": "string"
-                    },
-                    "member": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "name": {
-                            "type": "string"
-                          },
-                          "id": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "photo_url",
-                    "proposal_url",
-                    "proposal_title",
-                    "desc",
-                    "description",
-                    "leader_id",
-                    "member"
-                  ],
-                  "$ref": "#/components/schemas/data-team"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "404": {
             "description": "",
             "content": {
               "application/json": {
@@ -2206,132 +1947,6 @@
             "headers": {}
           },
           "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/admin/titles": {
-      "get": {
-        "summary": "Get All Title",
-        "deprecated": false,
-        "description": "list all available title (previous period && not yet taken)",
-        "operationId": "get-api-admin-title",
-        "tags": [
-          "admin"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/data-title-short"
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/admin/title/{id}": {
-      "get": {
-        "summary": "Detail Title By Id",
-        "deprecated": false,
-        "description": "full data from title id",
-        "operationId": "get-api-admin-title-id",
-        "tags": [
-          "admin"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-                    "desc": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "photo_url": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "title",
-                    "desc",
-                    "description",
-                    "photo_url",
-                    "team_id"
-                  ],
-                  "$ref": "#/components/schemas/data-title"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "404": {
             "description": "",
             "content": {
               "application/json": {
