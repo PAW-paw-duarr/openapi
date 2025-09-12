@@ -3,11 +3,14 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.5.0"
+    "version": "1.6.0"
   },
   "tags": [
     {
       "name": "title"
+    },
+    {
+      "name": "admin"
     },
     {
       "name": "submission"
@@ -20,9 +23,6 @@
     },
     {
       "name": "auth"
-    },
-    {
-      "name": "admin"
     }
   ],
   "paths": {
@@ -30,7 +30,7 @@
       "get": {
         "summary": "List Title",
         "deprecated": false,
-        "description": "list all available title (previous period && not yet taken)",
+        "description": "list all available title (previous period)",
         "operationId": "get-api-title",
         "tags": [
           "title"
@@ -432,6 +432,84 @@
           }
         },
         "security": []
+      },
+      "delete": {
+        "summary": "Remove Title",
+        "deprecated": false,
+        "description": "",
+        "operationId": "del-api-title-id",
+        "tags": [
+          "admin"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
       }
     },
     "/submission": {
@@ -546,6 +624,84 @@
             "headers": {}
           },
           "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "delete": {
+        "summary": "Remove submission",
+        "deprecated": false,
+        "description": "",
+        "operationId": "del-api-submission-id",
+        "tags": [
+          "submission"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
             "description": "",
             "content": {
               "application/json": {
@@ -971,6 +1127,84 @@
           }
         },
         "security": []
+      },
+      "delete": {
+        "summary": "Remove team",
+        "deprecated": false,
+        "description": "",
+        "operationId": "del-api-team-id",
+        "tags": [
+          "team"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
       }
     },
     "/team/join": {
@@ -1201,7 +1435,95 @@
         "security": []
       }
     },
-    "/user": {
+    "/team/new": {
+      "post": {
+        "summary": "Generate New Team",
+        "deprecated": false,
+        "description": "generate new capstone batch",
+        "operationId": "post-api-team-new",
+        "tags": [
+          "team"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "period": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "period"
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "code": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/user/me": {
       "get": {
         "summary": "Current User",
         "deprecated": false,
@@ -1260,7 +1582,169 @@
           }
         },
         "security": []
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "summary": "Detail User By Id",
+        "deprecated": false,
+        "description": "get user data by id",
+        "operationId": "api-user-id",
+        "tags": [
+          "user"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "cv_url": {
+                      "type": "string"
+                    },
+                    "team_id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "cv_url",
+                    "team_id",
+                    "name",
+                    "email"
+                  ],
+                  "$ref": "#/components/schemas/data-user"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
       },
+      "delete": {
+        "summary": "Remove user",
+        "deprecated": false,
+        "description": "",
+        "operationId": "del-api-admin-user",
+        "tags": [
+          "user"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "null"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/user": {
       "patch": {
         "summary": "Change user",
         "deprecated": false,
@@ -1373,74 +1857,32 @@
         "security": []
       }
     },
-    "/user/{id}": {
+    "/user/": {
       "get": {
-        "summary": "Detail User By Id",
+        "summary": "List User",
         "deprecated": false,
-        "description": "get user data by id",
-        "operationId": "api-user-id",
+        "description": "",
+        "operationId": "get-user",
         "tags": [
           "user"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "cv_url": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "cv_url",
-                    "team_id",
-                    "name",
-                    "email"
-                  ],
-                  "$ref": "#/components/schemas/data-user"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/data-user-short"
+                  }
                 }
               }
             },
             "headers": {}
           },
           "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "404": {
             "description": "",
             "content": {
               "application/json": {
@@ -1696,450 +2138,62 @@
         },
         "security": []
       }
-    },
-    "/admin/user": {
-      "delete": {
-        "summary": "Remove profile",
-        "deprecated": false,
-        "description": "",
-        "operationId": "del-api-admin-user",
-        "tags": [
-          "admin"
-        ],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "id"
-                ]
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "null"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/admin/batch": {
-      "post": {
-        "summary": "Generate New Batch",
-        "deprecated": false,
-        "description": "generate new capstone batch",
-        "operationId": "post-api-admin-batch",
-        "tags": [
-          "admin"
-        ],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "period": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "period"
-                ]
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "code": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/admin/team": {
-      "delete": {
-        "summary": "Remove teams",
-        "deprecated": false,
-        "description": "",
-        "operationId": "del-api-admin-team",
-        "tags": [
-          "admin"
-        ],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "id"
-                ]
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "null"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/admin/submission": {
-      "delete": {
-        "summary": "Remove submission",
-        "deprecated": false,
-        "description": "",
-        "operationId": "del-api-admin-submission",
-        "tags": [
-          "admin"
-        ],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "id"
-                ]
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "null"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
-    },
-    "/admin/title": {
-      "delete": {
-        "summary": "Remove Title",
-        "deprecated": false,
-        "description": "",
-        "operationId": "del-api-title-submission",
-        "tags": [
-          "admin"
-        ],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "id"
-                ]
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "null"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "500": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DefaultErrors"
-                }
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      }
     }
   },
   "components": {
     "schemas": {
+      "data-user-short": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "signin-password-body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "additionalProperties": false
+      },
+      "data-user": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "cv_url": {
+            "type": "string"
+          },
+          "team_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "google_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "data-team": {
         "type": "object",
         "properties": {
@@ -2173,61 +2227,19 @@
         },
         "additionalProperties": false
       },
-      "data-team-short": {
+      "data-submission-short": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "category": {
-            "type": "string",
-            "enum": [
-              "Kesehatan",
-              "Pengelolaan Sampah",
-              "Smart City",
-              "Transportasi Ramah Lingkungan"
-            ]
-          },
-          "period": {
-            "type": "number"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-user": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "cv_url": {
             "type": "string"
           },
           "team_id": {
             "type": "string"
           },
-          "name": {
+          "team_target_id": {
             "type": "string"
           },
-          "email": {
-            "type": "string"
-          },
-          "google_id": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-user-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
+          "title_id": {
             "type": "string"
           }
         },
@@ -2250,24 +2262,6 @@
           },
           "accepted": {
             "type": "boolean"
-          },
-          "title_id": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-submission-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "team_id": {
-            "type": "string"
-          },
-          "team_target_id": {
-            "type": "string"
           },
           "title_id": {
             "type": "string"
@@ -2315,22 +2309,6 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
-      },
-      "signin-password-body": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "email",
-          "password"
-        ],
         "additionalProperties": false
       },
       "DefaultErrors": {
