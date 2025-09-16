@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.6.2"
+    "version": "1.6.3"
   },
   "tags": [
     {
@@ -1446,58 +1446,6 @@
   },
   "components": {
     "schemas": {
-      "data-user-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "signin-password-body": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "email",
-          "password"
-        ],
-        "additionalProperties": false
-      },
-      "data-user": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "cv_url": {
-            "type": "string"
-          },
-          "team_id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "google_id": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
       "data-team": {
         "type": "object",
         "properties": {
@@ -1531,16 +1479,61 @@
         },
         "additionalProperties": false
       },
-      "data-submission-short": {
+      "data-team-short": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string"
           },
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Kesehatan",
+              "Pengelolaan Sampah",
+              "Smart City",
+              "Transportasi Ramah Lingkungan"
+            ]
+          },
+          "period": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "data-user": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "cv_url": {
+            "type": "string"
+          },
           "team_id": {
             "type": "string"
           },
-          "team_target_id": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "google_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "data-user-short": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
             "type": "string"
           }
         },
@@ -1563,6 +1556,21 @@
           },
           "accepted": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "data-submission-short": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "team_id": {
+            "type": "string"
+          },
+          "team_target_id": {
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -1607,6 +1615,45 @@
             "type": "string"
           }
         },
+        "additionalProperties": false
+      },
+      "signin-password-body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "additionalProperties": false
+      },
+      "DefaultErrors": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "status"
+        ],
         "additionalProperties": false
       }
     },
