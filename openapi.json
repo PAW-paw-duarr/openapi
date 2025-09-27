@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.7.0"
+    "version": "1.8.0"
   },
   "tags": [
     {
@@ -110,6 +110,125 @@
           }
         },
         "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "desc": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "photo_url": {
+                      "type": "string"
+                    },
+                    "team_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "desc",
+                    "description",
+                    "photo_url",
+                    "team_id"
+                  ],
+                  "$ref": "#/components/schemas/data-title"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      },
+      "patch": {
+        "summary": "Change Title",
+        "deprecated": false,
+        "description": "change title",
+        "operationId": "patch-api-title",
+        "tags": [
+          "title"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "photo_file": {
+                    "format": "binary",
+                    "type": "string",
+                    "example": ""
+                  },
+                  "proposal_file": {
+                    "format": "binary",
+                    "type": "string",
+                    "example": ""
+                  },
+                  "title": {
+                    "example": "",
+                    "type": "string"
+                  },
+                  "desc": {
+                    "example": "",
+                    "type": "string"
+                  },
+                  "description": {
+                    "example": "",
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {}
+            }
+          }
+        },
+        "responses": {
           "200": {
             "description": "",
             "content": {
@@ -144,6 +263,50 @@
                     "team_id"
                   ],
                   "$ref": "#/components/schemas/data-title"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
                 }
               }
             },
@@ -217,102 +380,6 @@
                     "photo_url": "https://storage.hilmo.dev/pawpaw/undefined"
                   }
                 ]
-              }
-            },
-            "headers": {}
-          }
-        },
-        "security": []
-      },
-      "patch": {
-        "summary": "Change Title",
-        "deprecated": false,
-        "description": "change title",
-        "operationId": "patch-api-title",
-        "tags": [
-          "title"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "photo_file": {
-                    "format": "binary",
-                    "type": "string",
-                    "example": ""
-                  },
-                  "proposal_file": {
-                    "format": "binary",
-                    "type": "string",
-                    "example": ""
-                  },
-                  "title": {
-                    "example": "",
-                    "type": "string"
-                  },
-                  "desc": {
-                    "example": "",
-                    "type": "string"
-                  },
-                  "description": {
-                    "example": "",
-                    "type": "string"
-                  }
-                }
-              },
-              "examples": {}
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-                    "desc": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "photo_url": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "title",
-                    "desc",
-                    "description",
-                    "photo_url",
-                    "team_id"
-                  ],
-                  "$ref": "#/components/schemas/data-title"
-                }
               }
             },
             "headers": {}
@@ -498,7 +565,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title_id": {
+                  "team_target_id": {
                     "example": "",
                     "type": "string"
                   },
@@ -509,7 +576,7 @@
                   }
                 },
                 "required": [
-                  "title_id",
+                  "team_target_id",
                   "grand_design"
                 ]
               },
@@ -541,6 +608,50 @@
                     "grand_design_url"
                   ],
                   "$ref": "#/components/schemas/data-submission"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
                 }
               }
             },
@@ -634,53 +745,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "photo_url": {
-                      "type": "string"
-                    },
-                    "proposal_url": {
-                      "type": "string"
-                    },
-                    "proposal_title": {
-                      "type": "string"
-                    },
-                    "desc": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "leader_id": {
-                      "type": "string"
-                    },
-                    "member": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "name": {
-                            "type": "string"
-                          },
-                          "id": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "photo_url",
-                    "proposal_url",
-                    "proposal_title",
-                    "desc",
-                    "description",
-                    "leader_id",
-                    "member"
-                  ],
                   "$ref": "#/components/schemas/data-team"
                 }
               }
@@ -717,53 +781,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "photo_url": {
-                      "type": "string"
-                    },
-                    "proposal_url": {
-                      "type": "string"
-                    },
-                    "proposal_title": {
-                      "type": "string"
-                    },
-                    "desc": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "leader_id": {
-                      "type": "string"
-                    },
-                    "member": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "name": {
-                            "type": "string"
-                          },
-                          "id": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "photo_url",
-                    "proposal_url",
-                    "proposal_title",
-                    "desc",
-                    "description",
-                    "leader_id",
-                    "member"
-                  ],
                   "$ref": "#/components/schemas/data-team"
                 }
               }
@@ -844,53 +861,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "photo_url": {
-                      "type": "string"
-                    },
-                    "proposal_url": {
-                      "type": "string"
-                    },
-                    "proposal_title": {
-                      "type": "string"
-                    },
-                    "desc": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "leader_id": {
-                      "type": "string"
-                    },
-                    "member": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "name": {
-                            "type": "string"
-                          },
-                          "id": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "photo_url",
-                    "proposal_url",
-                    "proposal_title",
-                    "desc",
-                    "description",
-                    "leader_id",
-                    "member"
-                  ],
                   "$ref": "#/components/schemas/data-team"
                 }
               }
@@ -901,7 +871,7 @@
         "security": []
       }
     },
-    "/team/kick": {
+    "/team/kick/{id}": {
       "delete": {
         "summary": "Kick Member",
         "deprecated": false,
@@ -910,27 +880,17 @@
         "tags": [
           "team"
         ],
-        "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "user_id": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "user_id"
-                ]
-              },
-              "example": {
-                "id": "123"
-              }
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
-        },
+        ],
         "responses": {
           "204": {
             "description": "",
@@ -939,6 +899,50 @@
                 "schema": {
                   "type": "object",
                   "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
                 }
               }
             },
@@ -964,7 +968,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "new_perios": {
+                  "new_period": {
                     "type": "boolean"
                   },
                   "team_data": {
@@ -978,17 +982,25 @@
                   "team_data"
                 ]
               },
-              "examples": {}
+              "example": {
+                "new_period": true,
+                "team_data": [
+                  {
+                    "name": "Team-1",
+                    "leader_email": "tes2@mail.com",
+                    "category": "Kesehatan"
+                  }
+                ]
+              }
             }
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
                   "properties": {
                     "success_count": {
                       "type": "integer"
@@ -999,53 +1011,6 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "photo_url": {
-                            "type": "string"
-                          },
-                          "proposal_url": {
-                            "type": "string"
-                          },
-                          "proposal_title": {
-                            "type": "string"
-                          },
-                          "desc": {
-                            "type": "string"
-                          },
-                          "description": {
-                            "type": "string"
-                          },
-                          "leader_id": {
-                            "type": "string"
-                          },
-                          "member": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "name": {
-                                  "type": "string"
-                                },
-                                "id": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "photo_url",
-                          "proposal_url",
-                          "proposal_title",
-                          "desc",
-                          "description",
-                          "leader_id",
-                          "member"
-                        ],
                         "$ref": "#/components/schemas/data-team"
                       }
                     },
@@ -1054,34 +1019,25 @@
                       "items": {
                         "type": "object",
                         "properties": {
-                          "name": {
-                            "type": "string"
-                          },
-                          "leader_email": {
-                            "type": "string"
-                          },
-                          "category": {
-                            "$ref": "#/components/schemas/CategoryCapstone"
-                          },
                           "error": {
                             "type": "string"
                           }
                         },
                         "required": [
-                          "error",
-                          "name",
-                          "leader_email",
-                          "category"
+                          "error"
                         ]
                       }
+                    },
+                    "period": {
+                      "type": "integer"
                     }
                   },
                   "required": [
                     "success_count",
                     "error_count",
-                    "data",
-                    "error_data"
-                  ]
+                    "period"
+                  ],
+                  "$ref": "#/components/schemas/RespGenerateNewTeam"
                 }
               }
             },
@@ -1270,7 +1226,7 @@
     },
     "/user": {
       "patch": {
-        "summary": "Change user",
+        "summary": "Update user",
         "deprecated": false,
         "description": "change user data",
         "operationId": "patch-api-user",
@@ -1343,6 +1299,39 @@
               }
             },
             "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -1405,7 +1394,10 @@
                 ],
                 "$ref": "#/components/schemas/signin-password-body"
               },
-              "examples": {}
+              "example": {
+                "email": "string",
+                "password": "string"
+              }
             }
           }
         },
@@ -1440,6 +1432,39 @@
                     "email"
                   ],
                   "$ref": "#/components/schemas/data-user"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
                 }
               }
             },
@@ -1590,6 +1615,12 @@
           },
           "code": {
             "type": "string"
+          },
+          "member": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/data-user-short"
+            }
           }
         },
         "additionalProperties": false
@@ -1629,6 +1660,57 @@
           "name",
           "leader_email",
           "category"
+        ]
+      },
+      "RespGenerateNewTeam": {
+        "type": "object",
+        "properties": {
+          "success_count": {
+            "type": "integer"
+          },
+          "error_count": {
+            "type": "integer"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/data-team"
+            }
+          },
+          "error_data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "leader_email": {
+                  "type": "string"
+                },
+                "category": {
+                  "$ref": "#/components/schemas/CategoryCapstone"
+                },
+                "error": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "error",
+                "name",
+                "leader_email",
+                "category"
+              ]
+            }
+          },
+          "period": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "success_count",
+          "error_count",
+          "period"
         ]
       },
       "data-user": {
