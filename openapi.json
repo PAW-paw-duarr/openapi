@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.6.3"
+    "version": "1.7.0"
   },
   "tags": [
     {
@@ -964,12 +964,18 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "period": {
-                    "type": "string"
+                  "new_perios": {
+                    "type": "boolean"
+                  },
+                  "team_data": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/data-team-new"
+                    }
                   }
                 },
                 "required": [
-                  "period"
+                  "team_data"
                 ]
               },
               "examples": {}
@@ -982,18 +988,133 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "code": {
-                        "type": "string"
+                  "type": "object",
+                  "properties": {
+                    "success_count": {
+                      "type": "integer"
+                    },
+                    "error_count": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "photo_url": {
+                            "type": "string"
+                          },
+                          "proposal_url": {
+                            "type": "string"
+                          },
+                          "proposal_title": {
+                            "type": "string"
+                          },
+                          "desc": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "leader_id": {
+                            "type": "string"
+                          },
+                          "member": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "photo_url",
+                          "proposal_url",
+                          "proposal_title",
+                          "desc",
+                          "description",
+                          "leader_id",
+                          "member"
+                        ],
+                        "$ref": "#/components/schemas/data-team"
+                      }
+                    },
+                    "error_data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "leader_email": {
+                            "type": "string"
+                          },
+                          "category": {
+                            "$ref": "#/components/schemas/CategoryCapstone"
+                          },
+                          "error": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "error",
+                          "name",
+                          "leader_email",
+                          "category"
+                        ]
                       }
                     }
-                  }
+                  },
+                  "required": [
+                    "success_count",
+                    "error_count",
+                    "data",
+                    "error_data"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
                 }
               }
             },
@@ -1462,13 +1583,7 @@
             "type": "string"
           },
           "category": {
-            "type": "string",
-            "enum": [
-              "Kesehatan",
-              "Pengelolaan Sampah",
-              "Smart City",
-              "Transportasi Ramah Lingkungan"
-            ]
+            "$ref": "#/components/schemas/CategoryCapstone"
           },
           "period": {
             "type": "number"
@@ -1489,19 +1604,32 @@
             "type": "string"
           },
           "category": {
-            "type": "string",
-            "enum": [
-              "Kesehatan",
-              "Pengelolaan Sampah",
-              "Smart City",
-              "Transportasi Ramah Lingkungan"
-            ]
+            "$ref": "#/components/schemas/CategoryCapstone"
           },
           "period": {
             "type": "number"
           }
         },
         "additionalProperties": false
+      },
+      "data-team-new": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "leader_email": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryCapstone"
+          }
+        },
+        "required": [
+          "name",
+          "leader_email",
+          "category"
+        ]
       },
       "data-user": {
         "type": "object",
@@ -1655,6 +1783,15 @@
           "status"
         ],
         "additionalProperties": false
+      },
+      "CategoryCapstone": {
+        "type": "string",
+        "enum": [
+          "Kesehatan",
+          "Pengelolaan Sampah",
+          "Smart City",
+          "Transportasi Ramah Lingkungan"
+        ]
       }
     },
     "securitySchemes": {}
