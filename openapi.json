@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.8.0"
+    "version": "1.8.1"
   },
   "tags": [
     {
@@ -25,9 +25,9 @@
   "paths": {
     "/title": {
       "get": {
-        "summary": "List Title",
+        "summary": "List All Titles",
         "deprecated": false,
-        "description": "list all available title (previous period)",
+        "description": "Fetches a list of all capstone titles\nNonAdmin: only from previous the period\nAdmin : all titles",
         "operationId": "get-api-title",
         "tags": [
           "title"
@@ -35,7 +35,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Fetches a list of all project titles from the previous period",
             "content": {
               "application/json": {
                 "schema": {
@@ -43,15 +43,18 @@
                   "items": {
                     "$ref": "#/components/schemas/data-title-short"
                   }
-                },
-                "example": [
-                  {
-                    "id": "68bd10af65ab2e935d845a4d",
-                    "title": "title",
-                    "desc": "desc",
-                    "photo_url": "https://storage.hilmo.dev/pawpaw/undefined"
-                  }
-                ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
               }
             },
             "headers": {}
@@ -60,9 +63,9 @@
         "security": []
       },
       "post": {
-        "summary": "Register Title",
+        "summary": "Register a New Title",
         "deprecated": false,
-        "description": "Register title for next year",
+        "description": "Submits and registers a new capstone title for the upcoming period",
         "operationId": "post-api-title",
         "tags": [
           "title"
@@ -186,9 +189,9 @@
         "security": []
       },
       "patch": {
-        "summary": "Change Title",
+        "summary": "Update an Existing Title",
         "deprecated": false,
-        "description": "change title",
+        "description": "Updates the details of a registered title",
         "operationId": "patch-api-title",
         "tags": [
           "title"
@@ -318,9 +321,9 @@
     },
     "/title/{id}": {
       "get": {
-        "summary": "Detail Title By Id",
+        "summary": "Get Title by ID",
         "deprecated": false,
-        "description": "full data from title id",
+        "description": "Retrieves the complete and detailed information for a single capstone title\nNonAdmin: cannot see proposal_url except the owner or the submission is accepted\nAdmin : retrieve all data",
         "operationId": "get-api-title-id",
         "tags": [
           "title"
@@ -371,15 +374,29 @@
                     "team_id"
                   ],
                   "$ref": "#/components/schemas/data-title"
-                },
-                "example": [
-                  {
-                    "id": "68bd10af65ab2e935d845a4d",
-                    "title": "title",
-                    "desc": "desc",
-                    "photo_url": "https://storage.hilmo.dev/pawpaw/undefined"
-                  }
-                ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
               }
             },
             "headers": {}
@@ -388,9 +405,9 @@
         "security": []
       },
       "delete": {
-        "summary": "Remove Title",
+        "summary": "Delete a Title",
         "deprecated": false,
-        "description": "",
+        "description": "Permanently deletes a specific capstone title\nNonadmin : cannot use this\n",
         "operationId": "del-api-title-id",
         "tags": [
           "title"
@@ -417,6 +434,50 @@
               }
             },
             "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -424,9 +485,9 @@
     },
     "/submission": {
       "get": {
-        "summary": "List Submission",
+        "summary": "List All Title Submissions",
         "deprecated": false,
-        "description": "list title submission",
+        "description": "Fetches a list of all capstone title submissions\nNonadmin : only submission from and to user team\nAdmin : all submission",
         "operationId": "get-api-submission",
         "tags": [
           "submission"
@@ -457,6 +518,17 @@
               }
             },
             "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -464,9 +536,9 @@
     },
     "/submission/{id}": {
       "get": {
-        "summary": "Detail Submission",
+        "summary": "Get Submission by ID",
         "deprecated": false,
-        "description": "full data from submission id",
+        "description": "Retrieves the complete and detailed information for a single submission\nNonAdmin: only submission from and to user team\nAdmin : all submission",
         "operationId": "get-api-submission-id",
         "tags": [
           "submission"
@@ -510,14 +582,36 @@
               }
             },
             "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
       },
       "delete": {
-        "summary": "Remove submission",
+        "summary": "Delete a Submission",
         "deprecated": false,
-        "description": "",
+        "description": "Deletes a specific submission\nNonadmin : cannot use this",
         "operationId": "del-api-submission-id",
         "tags": [
           "submission"
@@ -544,6 +638,50 @@
               }
             },
             "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -551,9 +689,9 @@
     },
     "/submission/submit": {
       "post": {
-        "summary": "Submit Submission",
+        "summary": "Submit a Proposal for a Title",
         "deprecated": false,
-        "description": "take the title",
+        "description": "Allows captain team to submit their project proposal for a chosen title\n",
         "operationId": "post-api-submission-submit",
         "tags": [
           "submission"
@@ -663,9 +801,9 @@
     },
     "/submission/response": {
       "post": {
-        "summary": "Response Submission",
+        "summary": "Accept or Reject a Submission",
         "deprecated": false,
-        "description": "response a submission",
+        "description": "Allows a captain team to respond to a team's submission by either accepting or rejecting it",
         "operationId": "post-api-submission-response",
         "tags": [
           "submission"
@@ -724,6 +862,50 @@
               }
             },
             "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -731,9 +913,9 @@
     },
     "/team": {
       "get": {
-        "summary": "Current Team",
+        "summary": "List All Teams",
         "deprecated": false,
-        "description": "get current team detail",
+        "description": "Fetches a list of all team\nNonadmin : cannot use this",
         "operationId": "get-api-team",
         "tags": [
           "team"
@@ -745,7 +927,19 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/data-team"
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
                 }
               }
             },
@@ -757,9 +951,9 @@
     },
     "/team/{id}": {
       "get": {
-        "summary": "Detail Team By Id",
+        "summary": "Get Team by ID",
         "deprecated": false,
-        "description": "get current team detail",
+        "description": "Fetches the public profile and member list for a specific team",
         "operationId": "get-api-team-id",
         "tags": [
           "team"
@@ -781,7 +975,30 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/data-team"
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
                 }
               }
             },
@@ -791,9 +1008,9 @@
         "security": []
       },
       "delete": {
-        "summary": "Remove team",
+        "summary": "Delete a Team",
         "deprecated": false,
-        "description": "",
+        "description": "Deletes an entire team and its associated data\nNonadmin : cannot use this",
         "operationId": "del-api-team-id",
         "tags": [
           "team"
@@ -820,6 +1037,50 @@
               }
             },
             "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -827,9 +1088,9 @@
     },
     "/team/join": {
       "post": {
-        "summary": "Join Team",
+        "summary": "Join a Team via Invite Code",
         "deprecated": false,
-        "description": "join team with id",
+        "description": "Allows user to become a member of an existing team",
         "operationId": "post-api-team-join",
         "tags": [
           "team"
@@ -861,7 +1122,52 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/data-team"
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
                 }
               }
             },
@@ -873,9 +1179,9 @@
     },
     "/team/kick/{id}": {
       "delete": {
-        "summary": "Kick Member",
+        "summary": "Remove a Member from Team",
         "deprecated": false,
-        "description": "kick member",
+        "description": "Remove a specific member from their team",
         "operationId": "post-api-team-kick",
         "tags": [
           "team"
@@ -954,9 +1260,9 @@
     },
     "/team/new": {
       "post": {
-        "summary": "Generate New Team",
+        "summary": "Create New Teams",
         "deprecated": false,
-        "description": "generate new capstone batch",
+        "description": "Creates one or more new teams for a capstone period\nNonadmin : cannot use this",
         "operationId": "post-api-team-new",
         "tags": [
           "team"
@@ -974,7 +1280,8 @@
                   "team_data": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/components/schemas/data-team-new"
+                      "type": "object",
+                      "properties": {}
                     }
                   }
                 },
@@ -1011,7 +1318,8 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/data-team"
+                        "type": "object",
+                        "properties": {}
                       }
                     },
                     "error_data": {
@@ -1082,9 +1390,9 @@
     },
     "/user/me": {
       "get": {
-        "summary": "Current User",
+        "summary": "Get My User Profile",
         "deprecated": false,
-        "description": "get current userdata",
+        "description": "Retrieves the complete profile information for the currently authenticated user",
         "operationId": "get-api-user-me",
         "tags": [
           "user"
@@ -1125,6 +1433,17 @@
               }
             },
             "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -1132,9 +1451,9 @@
     },
     "/user/{id}": {
       "get": {
-        "summary": "Detail User By Id",
+        "summary": "Get User Profile by ID",
         "deprecated": false,
-        "description": "get user data by id",
+        "description": "Fetches the public profile information for a specific user",
         "operationId": "api-user-id",
         "tags": [
           "user"
@@ -1185,14 +1504,36 @@
               }
             },
             "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
       },
       "delete": {
-        "summary": "Remove user",
+        "summary": "Delete a User",
         "deprecated": false,
-        "description": "",
+        "description": "Removes a user account\nNonadmin : cannot use this",
         "operationId": "del-api-admin-user",
         "tags": [
           "user"
@@ -1219,6 +1560,50 @@
               }
             },
             "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -1226,9 +1611,9 @@
     },
     "/user": {
       "patch": {
-        "summary": "Update user",
+        "summary": "Update My User Profil",
         "deprecated": false,
-        "description": "change user data",
+        "description": " Updates the profile information for the authenticated user",
         "operationId": "patch-api-user",
         "tags": [
           "user"
@@ -1339,9 +1724,9 @@
     },
     "/user/": {
       "get": {
-        "summary": "List User",
+        "summary": "List All Users",
         "deprecated": false,
-        "description": "",
+        "description": "Retrieves a list of all users\nNonadmin : cannot use this",
         "operationId": "get-user",
         "tags": [
           "user"
@@ -1361,6 +1746,17 @@
               }
             },
             "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -1368,9 +1764,9 @@
     },
     "/auth/signin/password": {
       "post": {
-        "summary": "Password SignIn",
+        "summary": "Sign In with Email and Password",
         "deprecated": false,
-        "description": "",
+        "description": "Authenticates a user and creates a new session using their registered email and password credentials",
         "operationId": "get-auth-signin-password",
         "tags": [
           "auth"
@@ -1476,9 +1872,9 @@
     },
     "/auth/signup/password": {
       "post": {
-        "summary": "Password SignUp",
+        "summary": "Sign Up with Email and Password",
         "deprecated": false,
-        "description": "",
+        "description": "Registers a new user account in the system using an email and password",
         "operationId": "post-auth-signup-password",
         "tags": [
           "auth"
@@ -1530,6 +1926,28 @@
               }
             },
             "headers": {}
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -1537,9 +1955,9 @@
     },
     "/auth/signout": {
       "get": {
-        "summary": "Logout",
+        "summary": "Sign Out",
         "deprecated": false,
-        "description": "",
+        "description": "Logs out the currently authenticated user and invalidates their session token",
         "operationId": "get-auth-signout",
         "tags": [
           "auth"
@@ -1564,9 +1982,9 @@
     },
     "/auth/google": {
       "get": {
-        "summary": "Google Auth",
+        "summary": "Authenticate with Google",
         "deprecated": false,
-        "description": "",
+        "description": "Initiates the OAuth 2.0 flow to allow a user to sign in or sign up using their Google account",
         "operationId": "get-auth-google",
         "tags": [
           "auth"
@@ -1592,7 +2010,16 @@
   },
   "components": {
     "schemas": {
-      "data-team": {
+      "CategoryCapstone": {
+        "type": "string",
+        "enum": [
+          "Kesehatan",
+          "Pengelolaan Sampah",
+          "Smart City",
+          "Transportasi Ramah Lingkungan"
+        ]
+      },
+      "data-user-short": {
         "type": "object",
         "properties": {
           "id": {
@@ -1600,67 +2027,25 @@
           },
           "name": {
             "type": "string"
-          },
-          "leader_email": {
-            "type": "string"
-          },
-          "title_id": {
-            "type": "string"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryCapstone"
-          },
-          "period": {
-            "type": "number"
-          },
-          "code": {
-            "type": "string"
-          },
-          "member": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/data-user-short"
-            }
           }
         },
         "additionalProperties": false
       },
-      "data-team-short": {
+      "signin-password-body": {
         "type": "object",
         "properties": {
-          "id": {
+          "email": {
             "type": "string"
           },
-          "name": {
+          "password": {
             "type": "string"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryCapstone"
-          },
-          "period": {
-            "type": "number"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-team-new": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "leader_email": {
-            "type": "string"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryCapstone"
           }
         },
         "required": [
-          "name",
-          "leader_email",
-          "category"
-        ]
+          "email",
+          "password"
+        ],
+        "additionalProperties": false
       },
       "RespGenerateNewTeam": {
         "type": "object",
@@ -1674,7 +2059,8 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/data-team"
+              "type": "object",
+              "properties": {}
             }
           },
           "error_data": {
@@ -1713,6 +2099,99 @@
           "period"
         ]
       },
+      "data-title-short": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "photo_url": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "data-team-new": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "leader_email": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryCapstone"
+          }
+        },
+        "required": [
+          "name",
+          "leader_email",
+          "category"
+        ]
+      },
+      "data-team": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "leader_email": {
+            "type": "string"
+          },
+          "title_id": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryCapstone"
+          },
+          "period": {
+            "type": "number"
+          },
+          "code": {
+            "type": "string"
+          },
+          "member": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/data-user-short"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "DefaultErrors": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false
+      },
       "data-user": {
         "type": "object",
         "properties": {
@@ -1732,54 +2211,6 @@
             "type": "string"
           },
           "google_id": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-user-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-submission": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "team_id": {
-            "type": "string"
-          },
-          "grand_design_url": {
-            "type": "string"
-          },
-          "team_target_id": {
-            "type": "string"
-          },
-          "accepted": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-submission-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "team_id": {
-            "type": "string"
-          },
-          "team_target_id": {
             "type": "string"
           }
         },
@@ -1809,71 +2240,41 @@
         },
         "additionalProperties": false
       },
-      "data-title-short": {
+      "data-submission-short": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string"
           },
-          "title": {
+          "team_id": {
             "type": "string"
           },
-          "desc": {
-            "type": "string"
-          },
-          "photo_url": {
+          "team_target_id": {
             "type": "string"
           }
         },
         "additionalProperties": false
       },
-      "signin-password-body": {
+      "data-submission": {
         "type": "object",
         "properties": {
-          "email": {
+          "id": {
             "type": "string"
           },
-          "password": {
+          "team_id": {
             "type": "string"
+          },
+          "grand_design_url": {
+            "type": "string"
+          },
+          "team_target_id": {
+            "type": "string"
+          },
+          "accepted": {
+            "type": "boolean"
           }
         },
-        "required": [
-          "email",
-          "password"
-        ],
         "additionalProperties": false
-      },
-      "DefaultErrors": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer"
-          },
-          "error": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "details": {
-            "type": "object",
-            "properties": {},
-            "additionalProperties": true
-          }
-        },
-        "required": [
-          "status"
-        ],
-        "additionalProperties": false
-      },
-      "CategoryCapstone": {
-        "type": "string",
-        "enum": [
-          "Kesehatan",
-          "Pengelolaan Sampah",
-          "Smart City",
-          "Transportasi Ramah Lingkungan"
-        ]
       }
     },
     "securitySchemes": {}
