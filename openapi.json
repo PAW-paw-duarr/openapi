@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.8.1"
+    "version": "1.8.2"
   },
   "tags": [
     {
@@ -1884,8 +1884,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {}
+                "$ref": "#/components/schemas/signup-password-body"
               },
               "examples": {}
             }
@@ -2030,6 +2029,25 @@
           }
         },
         "additionalProperties": false
+      },
+      "signup-password-body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "name"
+        ]
       },
       "signin-password-body": {
         "type": "object",
