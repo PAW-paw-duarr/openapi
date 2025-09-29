@@ -3,7 +3,7 @@
   "info": {
     "title": "PAW",
     "description": "",
-    "version": "1.8.2"
+    "version": "1.8.3"
   },
   "tags": [
     {
@@ -927,8 +927,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {}
+                  "$ref": "#/components/schemas/data-team"
                 }
               }
             },
@@ -975,8 +974,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {}
+                  "$ref": "#/components/schemas/data-team"
                 }
               }
             },
@@ -1122,8 +1120,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {}
+                  "$ref": "#/components/schemas/data-team"
                 }
               }
             },
@@ -1280,8 +1277,7 @@
                   "team_data": {
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "properties": {}
+                      "$ref": "#/components/schemas/data-team-new"
                     }
                   }
                 },
@@ -1318,8 +1314,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {}
+                        "$ref": "#/components/schemas/data-team"
                       }
                     },
                     "error_data": {
@@ -2009,16 +2004,7 @@
   },
   "components": {
     "schemas": {
-      "CategoryCapstone": {
-        "type": "string",
-        "enum": [
-          "Kesehatan",
-          "Pengelolaan Sampah",
-          "Smart City",
-          "Transportasi Ramah Lingkungan"
-        ]
-      },
-      "data-user-short": {
+      "data-team": {
         "type": "object",
         "properties": {
           "id": {
@@ -2026,44 +2012,67 @@
           },
           "name": {
             "type": "string"
+          },
+          "leader_email": {
+            "type": "string"
+          },
+          "title_id": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryCapstone"
+          },
+          "period": {
+            "type": "number"
+          },
+          "code": {
+            "type": "string"
+          },
+          "member": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/data-user-short"
+            }
           }
         },
         "additionalProperties": false
       },
-      "signup-password-body": {
+      "data-team-short": {
         "type": "object",
         "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
+          "id": {
             "type": "string"
           },
           "name": {
             "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryCapstone"
+          },
+          "period": {
+            "type": "number"
           }
         },
-        "required": [
-          "email",
-          "password",
-          "name"
-        ]
+        "additionalProperties": false
       },
-      "signin-password-body": {
+      "data-team-new": {
         "type": "object",
         "properties": {
-          "email": {
+          "name": {
             "type": "string"
           },
-          "password": {
+          "leader_email": {
             "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryCapstone"
           }
         },
         "required": [
-          "email",
-          "password"
-        ],
-        "additionalProperties": false
+          "name",
+          "leader_email",
+          "category"
+        ]
       },
       "RespGenerateNewTeam": {
         "type": "object",
@@ -2077,8 +2086,7 @@
           "data": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {}
+              "$ref": "#/components/schemas/data-team"
             }
           },
           "error_data": {
@@ -2117,99 +2125,6 @@
           "period"
         ]
       },
-      "data-title-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "desc": {
-            "type": "string"
-          },
-          "photo_url": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-team-new": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "leader_email": {
-            "type": "string"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryCapstone"
-          }
-        },
-        "required": [
-          "name",
-          "leader_email",
-          "category"
-        ]
-      },
-      "data-team": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "leader_email": {
-            "type": "string"
-          },
-          "title_id": {
-            "type": "string"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryCapstone"
-          },
-          "period": {
-            "type": "number"
-          },
-          "code": {
-            "type": "string"
-          },
-          "member": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/data-user-short"
-            }
-          }
-        },
-        "additionalProperties": false
-      },
-      "DefaultErrors": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer"
-          },
-          "error": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "details": {
-            "type": "object",
-            "properties": {},
-            "additionalProperties": true
-          }
-        },
-        "required": [
-          "status"
-        ],
-        "additionalProperties": false
-      },
       "data-user": {
         "type": "object",
         "properties": {
@@ -2234,40 +2149,13 @@
         },
         "additionalProperties": false
       },
-      "data-title": {
+      "data-user-short": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string"
           },
-          "title": {
-            "type": "string"
-          },
-          "desc": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "photo_url": {
-            "type": "string"
-          },
-          "proposal_url": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-submission-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "team_id": {
-            "type": "string"
-          },
-          "team_target_id": {
+          "name": {
             "type": "string"
           }
         },
@@ -2293,6 +2181,133 @@
           }
         },
         "additionalProperties": false
+      },
+      "data-submission-short": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "team_id": {
+            "type": "string"
+          },
+          "team_target_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "data-title": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "photo_url": {
+            "type": "string"
+          },
+          "proposal_url": {
+            "type": "string"
+          },
+          "is_taken": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "data-title-short": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "photo_url": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "signin-password-body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "additionalProperties": false
+      },
+      "signup-password-body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "name"
+        ]
+      },
+      "DefaultErrors": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "CategoryCapstone": {
+        "type": "string",
+        "enum": [
+          "Kesehatan",
+          "Pengelolaan Sampah",
+          "Smart City",
+          "Transportasi Ramah Lingkungan"
+        ]
       }
     },
     "securitySchemes": {}
