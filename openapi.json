@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "PAW",
+    "title": "paw",
     "description": "",
-    "version": "1.8.3"
+    "version": "1.8.4"
   },
   "tags": [
     {
@@ -35,7 +35,7 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Fetches a list of all project titles from the previous period",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -927,7 +927,8 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/data-team"
+                  "type": "object",
+                  "properties": {}
                 }
               }
             },
@@ -974,7 +975,8 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/data-team"
+                  "type": "object",
+                  "properties": {}
                 }
               }
             },
@@ -1120,7 +1122,8 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/data-team"
+                  "type": "object",
+                  "properties": {}
                 }
               }
             },
@@ -1277,7 +1280,8 @@
                   "team_data": {
                     "type": "array",
                     "items": {
-                      "$ref": "#/components/schemas/data-team-new"
+                      "type": "object",
+                      "properties": {}
                     }
                   }
                 },
@@ -1314,7 +1318,8 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/data-team"
+                        "type": "object",
+                        "properties": {}
                       }
                     },
                     "error_data": {
@@ -1948,7 +1953,7 @@
       }
     },
     "/auth/signout": {
-      "get": {
+      "post": {
         "summary": "Sign Out",
         "deprecated": false,
         "description": "Logs out the currently authenticated user and invalidates their session token",
@@ -2004,7 +2009,16 @@
   },
   "components": {
     "schemas": {
-      "data-team": {
+      "CategoryCapstone": {
+        "type": "string",
+        "enum": [
+          "Kesehatan",
+          "Pengelolaan Sampah",
+          "Smart City",
+          "Transportasi Ramah Lingkungan"
+        ]
+      },
+      "data-user-short": {
         "type": "object",
         "properties": {
           "id": {
@@ -2012,67 +2026,44 @@
           },
           "name": {
             "type": "string"
-          },
-          "leader_email": {
-            "type": "string"
-          },
-          "title_id": {
-            "type": "string"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryCapstone"
-          },
-          "period": {
-            "type": "number"
-          },
-          "code": {
-            "type": "string"
-          },
-          "member": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/data-user-short"
-            }
           }
         },
         "additionalProperties": false
       },
-      "data-team-short": {
+      "signup-password-body": {
         "type": "object",
         "properties": {
-          "id": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
             "type": "string"
           },
           "name": {
             "type": "string"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryCapstone"
-          },
-          "period": {
-            "type": "number"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-team-new": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "leader_email": {
-            "type": "string"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryCapstone"
           }
         },
         "required": [
-          "name",
-          "leader_email",
-          "category"
+          "email",
+          "password",
+          "name"
         ]
+      },
+      "signin-password-body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "additionalProperties": false
       },
       "RespGenerateNewTeam": {
         "type": "object",
@@ -2086,7 +2077,8 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/data-team"
+              "type": "object",
+              "properties": {}
             }
           },
           "error_data": {
@@ -2125,6 +2117,99 @@
           "period"
         ]
       },
+      "data-title-short": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "desc": {
+            "type": "string"
+          },
+          "photo_url": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "data-team-new": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "leader_email": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryCapstone"
+          }
+        },
+        "required": [
+          "name",
+          "leader_email",
+          "category"
+        ]
+      },
+      "data-team": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "leader_email": {
+            "type": "string"
+          },
+          "title_id": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryCapstone"
+          },
+          "period": {
+            "type": "number"
+          },
+          "code": {
+            "type": "string"
+          },
+          "member": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/data-user-short"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "DefaultErrors": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false
+      },
       "data-user": {
         "type": "object",
         "properties": {
@@ -2144,54 +2229,6 @@
             "type": "string"
           },
           "google_id": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-user-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-submission": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "team_id": {
-            "type": "string"
-          },
-          "grand_design_url": {
-            "type": "string"
-          },
-          "team_target_id": {
-            "type": "string"
-          },
-          "accepted": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-submission-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "team_id": {
-            "type": "string"
-          },
-          "team_target_id": {
             "type": "string"
           }
         },
@@ -2224,90 +2261,41 @@
         },
         "additionalProperties": false
       },
-      "data-title-short": {
+      "data-submission-short": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string"
           },
-          "title": {
+          "team_id": {
             "type": "string"
           },
-          "desc": {
-            "type": "string"
-          },
-          "photo_url": {
+          "team_target_id": {
             "type": "string"
           }
         },
         "additionalProperties": false
       },
-      "signin-password-body": {
+      "data-submission": {
         "type": "object",
         "properties": {
-          "email": {
+          "id": {
             "type": "string"
           },
-          "password": {
+          "team_id": {
             "type": "string"
+          },
+          "grand_design_url": {
+            "type": "string"
+          },
+          "team_target_id": {
+            "type": "string"
+          },
+          "accepted": {
+            "type": "boolean"
           }
         },
-        "required": [
-          "email",
-          "password"
-        ],
         "additionalProperties": false
-      },
-      "signup-password-body": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "email",
-          "password",
-          "name"
-        ]
-      },
-      "DefaultErrors": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer"
-          },
-          "error": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "details": {
-            "type": "object",
-            "properties": {},
-            "additionalProperties": true
-          }
-        },
-        "required": [
-          "status"
-        ],
-        "additionalProperties": false
-      },
-      "CategoryCapstone": {
-        "type": "string",
-        "enum": [
-          "Kesehatan",
-          "Pengelolaan Sampah",
-          "Smart City",
-          "Transportasi Ramah Lingkungan"
-        ]
       }
     },
     "securitySchemes": {}
