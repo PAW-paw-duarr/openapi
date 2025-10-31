@@ -3,7 +3,7 @@
   "info": {
     "title": "paw",
     "description": "",
-    "version": "1.8.4"
+    "version": "1.8.5"
   },
   "tags": [
     {
@@ -1970,6 +1970,17 @@
                 "schema": {
                   "type": "object",
                   "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
                 }
               }
             },
