@@ -3,7 +3,7 @@
   "info": {
     "title": "paw",
     "description": "",
-    "version": "1.8.5"
+    "version": "1.9.0"
   },
   "tags": [
     {
@@ -118,34 +118,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-                    "desc": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "photo_url": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "title",
-                    "desc",
-                    "description",
-                    "photo_url",
-                    "team_id"
-                  ],
                   "$ref": "#/components/schemas/data-title"
                 }
               }
@@ -237,34 +209,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-                    "desc": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "photo_url": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "title",
-                    "desc",
-                    "description",
-                    "photo_url",
-                    "team_id"
-                  ],
                   "$ref": "#/components/schemas/data-title"
                 }
               }
@@ -560,7 +504,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
                   "properties": {
                     "id": {
                       "type": "string"
@@ -728,23 +671,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    },
-                    "grand_design_url": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "team_id",
-                    "grand_design_url"
-                  ],
                   "$ref": "#/components/schemas/data-submission"
                 }
               }
@@ -819,7 +745,7 @@
                     "type": "string"
                   },
                   "accept": {
-                    "type": "string"
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -840,23 +766,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    },
-                    "grand_design_url": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "team_id",
-                    "grand_design_url"
-                  ],
                   "$ref": "#/components/schemas/data-submission"
                 }
               }
@@ -927,8 +836,54 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "photo_url": {
+                      "type": "string"
+                    },
+                    "proposal_url": {
+                      "type": "string"
+                    },
+                    "proposal_title": {
+                      "type": "string"
+                    },
+                    "desc": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "leader_id": {
+                      "type": "string"
+                    },
+                    "member": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "photo_url",
+                    "proposal_url",
+                    "proposal_title",
+                    "desc",
+                    "description",
+                    "leader_id",
+                    "member"
+                  ],
+                  "$ref": "#/components/schemas/data-team"
                 }
               }
             },
@@ -975,8 +930,54 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "photo_url": {
+                      "type": "string"
+                    },
+                    "proposal_url": {
+                      "type": "string"
+                    },
+                    "proposal_title": {
+                      "type": "string"
+                    },
+                    "desc": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "leader_id": {
+                      "type": "string"
+                    },
+                    "member": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "photo_url",
+                    "proposal_url",
+                    "proposal_title",
+                    "desc",
+                    "description",
+                    "leader_id",
+                    "member"
+                  ],
+                  "$ref": "#/components/schemas/data-team"
                 }
               }
             },
@@ -1122,8 +1123,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {}
+                  "$ref": "#/components/schemas/data-team"
                 }
               }
             },
@@ -1280,8 +1280,7 @@
                   "team_data": {
                     "type": "array",
                     "items": {
-                      "type": "object",
-                      "properties": {}
+                      "$ref": "#/components/schemas/data-team-new"
                     }
                   }
                 },
@@ -1318,8 +1317,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "type": "object",
-                        "properties": {}
+                        "$ref": "#/components/schemas/data-team"
                       }
                     },
                     "error_data": {
@@ -1475,30 +1473,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "cv_url": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "cv_url",
-                    "team_id",
-                    "name",
-                    "email"
-                  ],
                   "$ref": "#/components/schemas/data-user"
                 }
               }
@@ -1655,30 +1629,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "cv_url": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "cv_url",
-                    "team_id",
-                    "name",
-                    "email"
-                  ],
                   "$ref": "#/components/schemas/data-user"
                 }
               }
@@ -1803,30 +1753,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "cv_url": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "cv_url",
-                    "team_id",
-                    "name",
-                    "email"
-                  ],
                   "$ref": "#/components/schemas/data-user"
                 }
               }
@@ -1896,30 +1822,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "cv_url": {
-                      "type": "string"
-                    },
-                    "team_id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "email": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "cv_url",
-                    "team_id",
-                    "name",
-                    "email"
-                  ],
                   "$ref": "#/components/schemas/data-user"
                 }
               }
@@ -2020,16 +1922,7 @@
   },
   "components": {
     "schemas": {
-      "CategoryCapstone": {
-        "type": "string",
-        "enum": [
-          "Kesehatan",
-          "Pengelolaan Sampah",
-          "Smart City",
-          "Transportasi Ramah Lingkungan"
-        ]
-      },
-      "data-user-short": {
+      "data-team": {
         "type": "object",
         "properties": {
           "id": {
@@ -2037,44 +1930,67 @@
           },
           "name": {
             "type": "string"
+          },
+          "leader_email": {
+            "type": "string"
+          },
+          "title_id": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryCapstone"
+          },
+          "period": {
+            "type": "number"
+          },
+          "code": {
+            "type": "string"
+          },
+          "member": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/data-user-short"
+            }
           }
         },
         "additionalProperties": false
       },
-      "signup-password-body": {
+      "data-team-short": {
         "type": "object",
         "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
+          "id": {
             "type": "string"
           },
           "name": {
             "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryCapstone"
+          },
+          "period": {
+            "type": "number"
           }
         },
-        "required": [
-          "email",
-          "password",
-          "name"
-        ]
+        "additionalProperties": false
       },
-      "signin-password-body": {
+      "data-team-new": {
         "type": "object",
         "properties": {
-          "email": {
+          "name": {
             "type": "string"
           },
-          "password": {
+          "leader_email": {
             "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryCapstone"
           }
         },
         "required": [
-          "email",
-          "password"
-        ],
-        "additionalProperties": false
+          "name",
+          "leader_email",
+          "category"
+        ]
       },
       "RespGenerateNewTeam": {
         "type": "object",
@@ -2088,8 +2004,7 @@
           "data": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {}
+              "$ref": "#/components/schemas/data-team"
             }
           },
           "error_data": {
@@ -2128,99 +2043,6 @@
           "period"
         ]
       },
-      "data-title-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "desc": {
-            "type": "string"
-          },
-          "photo_url": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "data-team-new": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "leader_email": {
-            "type": "string"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryCapstone"
-          }
-        },
-        "required": [
-          "name",
-          "leader_email",
-          "category"
-        ]
-      },
-      "data-team": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "leader_email": {
-            "type": "string"
-          },
-          "title_id": {
-            "type": "string"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryCapstone"
-          },
-          "period": {
-            "type": "number"
-          },
-          "code": {
-            "type": "string"
-          },
-          "member": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/data-user-short"
-            }
-          }
-        },
-        "additionalProperties": false
-      },
-      "DefaultErrors": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer"
-          },
-          "error": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          },
-          "details": {
-            "type": "object",
-            "properties": {},
-            "additionalProperties": true
-          }
-        },
-        "required": [
-          "status"
-        ],
-        "additionalProperties": false
-      },
       "data-user": {
         "type": "object",
         "properties": {
@@ -2240,6 +2062,54 @@
             "type": "string"
           },
           "google_id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "data-user-short": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "data-submission": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "team_id": {
+            "type": "string"
+          },
+          "grand_design_url": {
+            "type": "string"
+          },
+          "team_target_id": {
+            "type": "string"
+          },
+          "accepted": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "data-submission-short": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "team_id": {
+            "type": "string"
+          },
+          "team_target_id": {
             "type": "string"
           }
         },
@@ -2272,44 +2142,100 @@
         },
         "additionalProperties": false
       },
-      "data-submission-short": {
+      "data-title-short": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string"
           },
-          "team_id": {
+          "title": {
             "type": "string"
           },
-          "team_target_id": {
+          "desc": {
+            "type": "string"
+          },
+          "photo_url": {
             "type": "string"
           }
         },
         "additionalProperties": false
       },
-      "data-submission": {
+      "signin-password-body": {
         "type": "object",
         "properties": {
-          "id": {
+          "email": {
             "type": "string"
           },
-          "team_id": {
+          "password": {
             "type": "string"
-          },
-          "grand_design_url": {
-            "type": "string"
-          },
-          "team_target_id": {
-            "type": "string"
-          },
-          "accepted": {
-            "type": "boolean"
           }
         },
+        "required": [
+          "email",
+          "password"
+        ],
         "additionalProperties": false
+      },
+      "signup-password-body": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "name"
+        ]
+      },
+      "DefaultErrors": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer"
+          },
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object",
+            "properties": {},
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "CategoryCapstone": {
+        "type": "string",
+        "enum": [
+          "Kesehatan",
+          "Pengelolaan Sampah",
+          "Smart City",
+          "Transportasi Ramah Lingkungan"
+        ]
       }
     },
-    "securitySchemes": {}
+    "securitySchemes": {
+      "cookie auth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "sess"
+      }
+    }
   },
-  "servers": []
+  "servers": [],
+  "security": []
 }
