@@ -3,7 +3,7 @@
   "info": {
     "title": "paw",
     "description": "",
-    "version": "1.11.2"
+    "version": "1.11.3"
   },
   "tags": [
     {
@@ -1915,7 +1915,7 @@
         "security": []
       }
     },
-    "/period": {
+    "/config/period": {
       "get": {
         "summary": "Period",
         "deprecated": false,
