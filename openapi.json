@@ -3,7 +3,7 @@
   "info": {
     "title": "paw",
     "description": "",
-    "version": "1.11.1"
+    "version": "1.11.2"
   },
   "tags": [
     {
@@ -20,6 +20,9 @@
     },
     {
       "name": "auth"
+    },
+    {
+      "name": "period"
     }
   ],
   "paths": {
@@ -1903,6 +1906,50 @@
                 "schema": {
                   "type": "object",
                   "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/period": {
+      "get": {
+        "summary": "Period",
+        "deprecated": false,
+        "description": "get current period",
+        "tags": [
+          "period"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "current_period": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "current_period"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultErrors"
                 }
               }
             },
