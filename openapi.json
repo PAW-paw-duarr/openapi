@@ -3,7 +3,7 @@
   "info": {
     "title": "paw",
     "description": "",
-    "version": "1.9.1"
+    "version": "1.10.0"
   },
   "tags": [
     {
@@ -1951,7 +1951,14 @@
             }
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "leader_email",
+          "category",
+          "period"
+        ]
       },
       "data-team-short": {
         "type": "object",
@@ -1969,7 +1976,13 @@
             "type": "number"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "category",
+          "period"
+        ]
       },
       "data-team-new": {
         "type": "object",
@@ -2063,7 +2076,11 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name"
+        ]
       },
       "data-user-short": {
         "type": "object",
@@ -2075,7 +2092,11 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "id"
+        ]
       },
       "data-submission": {
         "type": "object",
@@ -2096,7 +2117,14 @@
             "type": "boolean"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "team_id",
+          "grand_design_url",
+          "team_target_id",
+          "accepted"
+        ]
       },
       "data-submission-short": {
         "type": "object",
@@ -2111,7 +2139,12 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "required": [
+          "team_target_id",
+          "team_id",
+          "id"
+        ]
       },
       "data-title": {
         "type": "object",
@@ -2136,9 +2169,21 @@
           },
           "is_taken": {
             "type": "boolean"
+          },
+          "team_id": {
+            "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "required": [
+          "team_id",
+          "photo_url",
+          "description",
+          "id",
+          "title",
+          "desc",
+          "is_taken"
+        ]
       },
       "data-title-short": {
         "type": "object",
@@ -2156,7 +2201,13 @@
             "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "desc",
+          "photo_url"
+        ]
       },
       "signin-password-body": {
         "type": "object",
