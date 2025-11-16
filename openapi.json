@@ -3,7 +3,7 @@
   "info": {
     "title": "paw",
     "description": "",
-    "version": "1.10.0"
+    "version": "1.11.0"
   },
   "tags": [
     {
@@ -1960,30 +1960,6 @@
           "period"
         ]
       },
-      "data-team-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryCapstone"
-          },
-          "period": {
-            "type": "number"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "name",
-          "category",
-          "period"
-        ]
-      },
       "data-team-new": {
         "type": "object",
         "properties": {
@@ -2090,12 +2066,16 @@
           },
           "name": {
             "type": "string"
+          },
+          "email": {
+            "type": "string"
           }
         },
         "additionalProperties": false,
         "required": [
           "name",
-          "id"
+          "id",
+          "email"
         ]
       },
       "data-submission": {
@@ -2244,6 +2224,15 @@
           "name"
         ]
       },
+      "CategoryCapstone": {
+        "type": "string",
+        "enum": [
+          "Kesehatan",
+          "Pengelolaan Sampah",
+          "Smart City",
+          "Transportasi Ramah Lingkungan"
+        ]
+      },
       "DefaultErrors": {
         "type": "object",
         "properties": {
@@ -2266,24 +2255,9 @@
           "status"
         ],
         "additionalProperties": false
-      },
-      "CategoryCapstone": {
-        "type": "string",
-        "enum": [
-          "Kesehatan",
-          "Pengelolaan Sampah",
-          "Smart City",
-          "Transportasi Ramah Lingkungan"
-        ]
       }
     },
-    "securitySchemes": {
-      "cookie auth": {
-        "type": "apiKey",
-        "in": "cookie",
-        "name": "sess"
-      }
-    }
+    "securitySchemes": {}
   },
   "servers": [],
   "security": []
