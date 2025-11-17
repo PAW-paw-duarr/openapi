@@ -3,7 +3,7 @@
   "info": {
     "title": "paw",
     "description": "",
-    "version": "1.11.3"
+    "version": "1.11.4"
   },
   "tags": [
     {
@@ -839,54 +839,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "photo_url": {
-                      "type": "string"
-                    },
-                    "proposal_url": {
-                      "type": "string"
-                    },
-                    "proposal_title": {
-                      "type": "string"
-                    },
-                    "desc": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "leader_id": {
-                      "type": "string"
-                    },
-                    "member": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "name": {
-                            "type": "string"
-                          },
-                          "id": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "photo_url",
-                    "proposal_url",
-                    "proposal_title",
-                    "desc",
-                    "description",
-                    "leader_id",
-                    "member"
-                  ],
-                  "$ref": "#/components/schemas/data-team"
+                  "$ref": "#/components/schemas/data-team-short"
                 }
               }
             },
@@ -1933,7 +1886,7 @@
                   "type": "object",
                   "properties": {
                     "current_period": {
-                      "type": "string"
+                      "type": "integer"
                     }
                   },
                   "required": [
@@ -1999,7 +1952,9 @@
           "name",
           "leader_email",
           "category",
-          "period"
+          "period",
+          "code",
+          "member"
         ]
       },
       "data-team-short": {
@@ -2011,11 +1966,20 @@
           "name": {
             "type": "string"
           },
+          "leader_email": {
+            "type": "string"
+          },
           "category": {
             "$ref": "#/components/schemas/CategoryCapstone"
           },
+          "title_id": {
+            "type": "string"
+          },
           "period": {
             "type": "number"
+          },
+          "code": {
+            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -2023,7 +1987,9 @@
           "id",
           "name",
           "category",
-          "period"
+          "period",
+          "leader_email",
+          "code"
         ]
       },
       "data-team-new": {
@@ -2116,6 +2082,9 @@
           },
           "google_id": {
             "type": "string"
+          },
+          "is_admin": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false,
@@ -2290,6 +2259,15 @@
           "name"
         ]
       },
+      "CategoryCapstone": {
+        "type": "string",
+        "enum": [
+          "Kesehatan",
+          "Pengelolaan Sampah",
+          "Smart City",
+          "Transportasi Ramah Lingkungan"
+        ]
+      },
       "DefaultErrors": {
         "type": "object",
         "properties": {
@@ -2312,24 +2290,9 @@
           "status"
         ],
         "additionalProperties": false
-      },
-      "CategoryCapstone": {
-        "type": "string",
-        "enum": [
-          "Kesehatan",
-          "Pengelolaan Sampah",
-          "Smart City",
-          "Transportasi Ramah Lingkungan"
-        ]
       }
     },
-    "securitySchemes": {
-      "cookie auth": {
-        "type": "apiKey",
-        "in": "cookie",
-        "name": "sess"
-      }
-    }
+    "securitySchemes": {}
   },
   "servers": [],
   "security": []
