@@ -3,7 +3,7 @@
   "info": {
     "title": "paw",
     "description": "",
-    "version": "1.11.4"
+    "version": "1.11.5"
   },
   "tags": [
     {
@@ -1952,44 +1952,7 @@
           "name",
           "leader_email",
           "category",
-          "period",
-          "code",
-          "member"
-        ]
-      },
-      "data-team-short": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "leader_email": {
-            "type": "string"
-          },
-          "category": {
-            "$ref": "#/components/schemas/CategoryCapstone"
-          },
-          "title_id": {
-            "type": "string"
-          },
-          "period": {
-            "type": "number"
-          },
-          "code": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "name",
-          "category",
-          "period",
-          "leader_email",
-          "code"
+          "period"
         ]
       },
       "data-team-new": {
@@ -2062,6 +2025,40 @@
           "period"
         ]
       },
+      "data-team-short": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "leader_email": {
+            "type": "string"
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryCapstone"
+          },
+          "title_id": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "leader_email",
+          "category",
+          "period",
+          "code"
+        ]
+      },
       "data-user": {
         "type": "object",
         "properties": {
@@ -2082,9 +2079,6 @@
           },
           "google_id": {
             "type": "string"
-          },
-          "is_admin": {
-            "type": "boolean"
           }
         },
         "additionalProperties": false,
@@ -2137,8 +2131,7 @@
           "id",
           "team_id",
           "grand_design_url",
-          "team_target_id",
-          "accepted"
+          "team_target_id"
         ]
       },
       "data-submission-short": {
